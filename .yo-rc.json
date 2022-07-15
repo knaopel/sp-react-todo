@@ -1,0 +1,20 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "whichFolder": "subdir",
+    "solutionName": "sp-react-todo",
+    "packageManager": "yarn",
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "ReactTodo",
+    "componentDescription": "WebPart for todo app using React",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.0",
+    "libraryName": "sp-react-todo",
+    "libraryId": "3915e978-fac1-4fc8-9349-1f9a33d76a20",
+    "environment": "spo",
+    "solutionShortDescription": "sp-react-todo description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false
+  }
+}

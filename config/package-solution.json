@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-react-todo-client-side-solution",
+    "id": "3915e978-fac1-4fc8-9349-1f9a33d76a20",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.15.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "sp-react-todo description"
+      },
+      "longDescription": {
+        "default": "sp-react-todo description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "sp-react-todo Feature",
+        "description": "The feature that activates elements of the sp-react-todo solution.",
+        "id": "6bc4a01f-8698-4fc2-ac68-e37967571bdd",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-react-todo.sppkg"
+  }
+}
