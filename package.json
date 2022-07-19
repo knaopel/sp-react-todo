@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "main": "lib/index.js",
+  "description": "\"Fork\" and update of react-todo-basic at https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-todo-basic",
   "scripts": {
     "build": "gulp bundle",
     "clean": "gulp clean",
