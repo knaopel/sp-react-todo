@@ -8,22 +8,22 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
-import * as strings from 'ReactTodoWebPartStrings';
-import ReactTodo from './components/ReactTodo';
-import { IReactTodoProps } from './components/IReactTodoProps';
+import * as strings from 'ReactTodo2WebPartStrings';
+import ReactTodo2 from './components/ReactTodo2';
+import { IReactTodo2Props } from './components/IReactTodo2Props';
 
-export interface IReactTodoWebPartProps {
+export interface IReactTodo2WebPartProps {
   description: string;
 }
 
-export default class ReactTodoWebPart extends BaseClientSideWebPart<IReactTodoWebPartProps> {
+export default class ReactTodo2WebPart extends BaseClientSideWebPart<IReactTodo2WebPartProps> {
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
 
   public render(): void {
-    const element: React.ReactElement<IReactTodoProps> = React.createElement(
-      ReactTodo,
+    const element: React.ReactElement<IReactTodo2Props> = React.createElement(
+      ReactTodo2,
       {
         description: this.properties.description,
         isDarkTheme: this._isDarkTheme,

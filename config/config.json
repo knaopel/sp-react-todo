@@ -5,14 +5,23 @@
     "react-todo-web-part": {
       "components": [
         {
-          "entrypoint": "./lib/webparts/reactTodo/ReactTodoWebPart.js",
-          "manifest": "./src/webparts/reactTodo/ReactTodoWebPart.manifest.json"
+          "entrypoint": "./lib/webparts/todo/TodoWebPart.js",
+          "manifest": "./src/webparts/todo/TodoWebPart.manifest.json"
+        }
+      ]
+    },
+    "react-todo-2-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/reactTodo2/ReactTodo2WebPart.js",
+          "manifest": "./src/webparts/reactTodo2/ReactTodo2WebPart.manifest.json"
         }
       ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "ReactTodoWebPartStrings": "lib/webparts/reactTodo/loc/{locale}.js"
+    "ReactTodoWebPartStrings": "lib/webparts/reactTodo/loc/{locale}.js",
+    "ReactTodo2WebPartStrings": "lib/webparts/reactTodo2/loc/{locale}.js"
   }
 }
