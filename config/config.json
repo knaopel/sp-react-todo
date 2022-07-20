@@ -21,7 +21,7 @@
   },
   "externals": {},
   "localizedResources": {
-    "ReactTodoWebPartStrings": "lib/webparts/reactTodo/loc/{locale}.js",
+    "ReactTodoWebPartStrings": "lib/webparts/todo/loc/{locale}.js",
     "ReactTodo2WebPartStrings": "lib/webparts/reactTodo2/loc/{locale}.js"
   }
 }
