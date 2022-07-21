@@ -1,8 +1,8 @@
-// @import "~office-ui-fabric-react/dist/sass/Fabric.Common";
+@import "~office-ui-fabric-core/dist/sass/Fabric";
 
 .todoListItem {
   border-width: 1px;
-  // border-color: $ms-color-neutralTertiaryAlt;
+  border-color: $ms-color-neutralTertiaryAlt;
   border-style: solid;
 
   .itemTaskRow {
@@ -15,22 +15,20 @@
     .deleteButton {
       &:hover,
       &:focus {
-        // color: $ms-color-themePrimary;
-        color: inherit;
+        color: $ms-color-themePrimary;
       }
     }
 
     .checkbox {
       :global .ms-Label {
-        // color: $ms-color-neutralPrimary;
+        color: $ms-color-neutralPrimary;
         font-size: 18px;
         padding: 0 0 0 36px;
       }
     }
 
     &.isCompleted {
-      background-color: inherit;
-      // background-color: $ms-color-neutralLighter;
+      background-color: $ms-color-neutralLighter;
     }
   }
 }
