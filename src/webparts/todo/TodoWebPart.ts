@@ -69,14 +69,12 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     /*
     Create the react element we want to render in the web part DOM. Pass the required props to the react component.
     */
-    const element: React.ReactElement<ITodoContainerProps> = React.createElement(
-      TodoContainer,
-      {
+    const element: React.ReactElement<ITodoContainerProps> =
+      React.createElement(TodoContainer, {
         dataProvider: this._dataProvider,
         webPartDisplayMode: this.displayMode,
-        configureStartCallback: this._openPropertyPane
-      }
-    );
+        configureStartCallback: this._openPropertyPane,
+      });
 
     ReactDom.render(element, this.domElement);
   }
@@ -176,6 +174,26 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
         },
       ],
     };
+  }
+
+  protected onPropertyPaneFieldChanged(
+    propertyPath: string,
+    oldValue: any,
+    newValue: any
+  ): void {
+    /*
+      Check the property path to see which property pane field changed.
+      If the property path matches the dropdown, then we set that list as the selected list for the web part.
+      */
+    if (propertyPath === 'spListIndex') {
+      this._setSelectedList(newValue);
+    }
+
+    /*
+    Finally, tell property pane to re-render the webpart.
+    This is valid for reactive property pane
+    */
+    super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
   }
 
   private _getGroupFields(): IPropertyPaneField<any>[] {
