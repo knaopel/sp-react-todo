@@ -1,31 +1,28 @@
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+import * as React from "react";
+import * as ReactDom from "react-dom";
 import {
   Environment,
   EnvironmentType,
   Version,
-} from '@microsoft/sp-core-library';
+} from "@microsoft/sp-core-library";
 import {
   IPropertyPaneConfiguration,
   IPropertyPaneDropdownOption,
   PropertyPaneDropdown,
   IPropertyPaneField,
   PropertyPaneLabel,
-} from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import { IReadonlyTheme } from '@microsoft/sp-component-base';
-import * as lodash from '@microsoft/sp-lodash-subset';
-import * as strings from 'ReactTodoWebPartStrings';
-import TodoContainer from './components/TodoContainer/TodoContainer';
-import ReactTodo from './components/ReactTodo';
-import { IReactTodoProps } from './components/IReactTodoProps';
-import ITodoWebPartProps from './ITodoWebPartProps';
-import ITodoDataProvider from './dataProviders/ITodoDataProvider';
-import ITodoTaskList from './models/ITodoTaskList';
-import SharePointDataProvider from './dataProviders/SharePointDataProvider';
-import MockDataProvider from './tests/MockDataProvider';
-import { thProperties } from 'office-ui-fabric-react';
-import ITodoContainerProps from './components/TodoContainer/ITodoContainerProps';
+} from "@microsoft/sp-property-pane";
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import { IReadonlyTheme } from "@microsoft/sp-component-base";
+import * as lodash from "@microsoft/sp-lodash-subset";
+import * as strings from "ReactTodoWebPartStrings";
+import TodoContainer from "./components/TodoContainer/TodoContainer";
+import ITodoWebPartProps from "./ITodoWebPartProps";
+import ITodoDataProvider from "./dataProviders/ITodoDataProvider";
+import ITodoTaskList from "./models/ITodoTaskList";
+import SharePointDataProvider from "./dataProviders/SharePointDataProvider";
+import MockDataProvider from "./tests/MockDataProvider";
+import ITodoContainerProps from "./components/TodoContainer/ITodoContainerProps";
 
 export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps> {
   private _dropdownOptions: IPropertyPaneDropdownOption[];
@@ -34,13 +31,13 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
   private _disableDropdown: boolean;
   // existing
   private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
+  private _environmentMessage: string = "";
 
   protected onInit(): Promise<void> {
     this._environmentMessage = this._getEnvironmentMessage();
     this.context.statusRenderer.displayLoadingIndicator(
       this.domElement,
-      'Todo'
+      "Todo"
     );
 
     if (DEBUG && Environment.type === EnvironmentType.Local) {
@@ -102,12 +99,12 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
 
     if (semanticColors) {
       this.domElement.style.setProperty(
-        '--bodyText',
+        "--bodyText",
         semanticColors.bodyText || null
       );
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
+      this.domElement.style.setProperty("--link", semanticColors.link || null);
       this.domElement.style.setProperty(
-        '--linkHovered',
+        "--linkHovered",
         semanticColors.linkHovered || null
       );
     }
@@ -118,10 +115,10 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
   }
 
   protected get dataVersion(): Version {
-    return Version.parse('1.0');
+    return Version.parse("1.0");
   }
 
-  private _loadTaskLists(): Promise<any> {
+  private _loadTaskLists(): Promise<void | { key: string; text: string }> {
     return this._dataProvider
       .getTaskLists()
       .then((taskLists: ITodoTaskList[]) => {
@@ -178,30 +175,30 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
 
   protected onPropertyPaneFieldChanged(
     propertyPath: string,
-    oldValue: any,
-    newValue: any
+    oldValue: string | boolean,
+    newValue: string | boolean
   ): void {
     /*
       Check the property path to see which property pane field changed.
       If the property path matches the dropdown, then we set that list as the selected list for the web part.
       */
-    if (propertyPath === 'spListIndex') {
-      this._setSelectedList(newValue);
+    if (propertyPath === "spListIndex") {
+      this._setSelectedList(newValue.toString());
     }
 
     /*
-    Finally, tell property pane to re-render the webpart.
+    Finally, tell property pane to re-render the WebPart.
     This is valid for reactive property pane
     */
     super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
   }
 
-  private _getGroupFields(): IPropertyPaneField<any>[] {
-    const fields: IPropertyPaneField<any>[] = [];
+  private _getGroupFields(): IPropertyPaneField<unknown>[] {
+    const fields: IPropertyPaneField<unknown>[] = [];
 
     fields.push(
-      PropertyPaneDropdown('spListIndex', {
-        label: 'Select a list',
+      PropertyPaneDropdown("spListIndex", {
+        label: "Select a list",
         disabled: this._disableDropdown,
         options: this._dropdownOptions,
       })
@@ -210,7 +207,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     if (this._disableDropdown) {
       fields.push(
         PropertyPaneLabel(null, {
-          text: 'Could not find task lists in your site. Create one or more task list and then try using the web part.',
+          text: "Could not find task lists in your site. Create one or more task list and then try using the web part.",
         })
       );
     }

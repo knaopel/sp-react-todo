@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { Fabric } from 'office-ui-fabric-react';
-import styles from './TodoContainer.module.scss';
-import ITodoContainerProps from './ITodoContainerProps';
-import ITodoItem from '../../models/ITodoItem';
-import ConfigurationView from '../ConfigurationView/ConfigurationView';
-import { DisplayMode } from '@microsoft/sp-core-library';
-import TodoForm from '../TodoForm/TodoForm';
-import TodoList from '../TodoList/TodoList';
+import * as React from "react";
+import { Fabric } from "office-ui-fabric-react";
+import styles from "./TodoContainer.module.scss";
+import ITodoContainerProps from "./ITodoContainerProps";
+import ITodoItem from "../../models/ITodoItem";
+import ConfigurationView from "../ConfigurationView/ConfigurationView";
+import { DisplayMode } from "@microsoft/sp-core-library";
+import TodoForm from "../TodoForm/TodoForm";
+import TodoList from "../TodoList/TodoList";
 
 const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
   const [showPlaceholder, setShowPlaceholder] = React.useState(true);
@@ -20,15 +20,27 @@ const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
     });
   };
 
+  const completeTodoItem = (todoItem: ITodoItem): Promise<void> => {
+    return dataProvider.updateItem(todoItem).then((items: ITodoItem[]) => {
+      setTodoItems(items);
+    });
+  };
+
+  const deleteTodo = (todoItem: ITodoItem): Promise<void> => {
+    return dataProvider.deleteItem(todoItem).then((items: ITodoItem[]) => {
+      setTodoItems(items);
+    });
+  };
+
   React.useEffect(() => {
     if (selectedList) {
-      if (selectedList.Id !== '0') {
+      if (selectedList.Id !== "0") {
         setShowPlaceholder(false);
         dataProvider.getItems().then(
           (items: ITodoItem[]) => setTodoItems(items),
           (err) => console.log(err)
         );
-      } else if (selectedList.Id === '0') {
+      } else if (selectedList.Id === "0") {
         setShowPlaceholder(true);
       }
     } else {
@@ -44,19 +56,19 @@ const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
     <Fabric>
       {showPlaceholder && webPartDisplayMode === DisplayMode.Edit && (
         <ConfigurationView
-          icon={'ms-Icon-Edit'}
-          iconText='Todos'
-          description='Get things done. Organize and share your to-do items with your team.'
-          buttonLabel='configure'
+          icon={"ms-Icon-Edit"}
+          iconText="To-dos"
+          description="Get things done. Organize and share your to-do items with your team."
+          buttonLabel="configure"
           // eslint-disable-next-line react/jsx-no-bind
           onConfigure={configureWebPart}
         />
       )}
       {showPlaceholder && webPartDisplayMode === DisplayMode.Read && (
         <ConfigurationView
-          icon={'ms-Icon-Edit'}
-          iconText='Todos'
-          description='Get things done. Organize and share your teams to-do items with your team. Edit this web part to start managing to-dos.'
+          icon={"ms-Icon-Edit"}
+          iconText="To-dos"
+          description="Get things done. Organize and share your teams to-do items with your team. Edit this web part to start managing to-dos."
         />
       )}
       {!showPlaceholder && (
@@ -71,13 +83,9 @@ const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
           <TodoList
             items={todoItems}
             // eslint-disable-next-line react/jsx-no-bind
-            onCompleteTodoItem={() => {
-              return;
-            }}
+            onCompleteTodoItem={completeTodoItem}
             // eslint-disable-next-line react/jsx-no-bind
-            onDeleteTodoItem={() => {
-              return;
-            }}
+            onDeleteTodoItem={deleteTodo}
           />
         </div>
       )}
