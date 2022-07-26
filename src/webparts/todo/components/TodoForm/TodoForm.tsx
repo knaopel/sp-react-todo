@@ -3,7 +3,7 @@ import {
   ChangeEvent,
   MouseEvent,
   FunctionComponent,
-  useEffect,
+  // useEffect,
   useState,
 } from 'react';
 import styles from './TodoForm.module.scss';
@@ -36,12 +36,14 @@ const TodoForm: FunctionComponent<ITodoFormProps> = (props) => {
         value={inputValue}
         placeholder={placeholderText}
         autoComplete='off'
+        // eslint-disable-next-line react/jsx-no-bind
         onChange={handleInputChange}
       />{' '}
       <div className={styles.addButtonCell}>
         <PrimaryButton
           className={styles.addButton}
           ariaLabel='Add a todo task'
+          // eslint-disable-next-line react/jsx-no-bind
           onClick={handleAddButtonClick}
         >
           Add

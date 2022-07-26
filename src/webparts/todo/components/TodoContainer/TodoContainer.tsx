@@ -56,7 +56,7 @@ const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
     <Fabric>
       {showPlaceholder && webPartDisplayMode === DisplayMode.Edit && (
         <ConfigurationView
-          icon={"ms-Icon-Edit"}
+          icon="Edit"
           iconText="To-dos"
           description="Get things done. Organize and share your to-do items with your team."
           buttonLabel="configure"
@@ -66,7 +66,7 @@ const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
       )}
       {showPlaceholder && webPartDisplayMode === DisplayMode.Read && (
         <ConfigurationView
-          icon={"ms-Icon-Edit"}
+          icon="Edit"
           iconText="To-dos"
           description="Get things done. Organize and share your teams to-do items with your team. Edit this web part to start managing to-dos."
         />

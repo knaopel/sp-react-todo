@@ -1,8 +1,8 @@
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import * as lodash from '@microsoft/sp-lodash-subset';
-import ITodoDataProvider from '../dataProviders/ITodoDataProvider';
-import ITodoItem from '../models/ITodoItem';
-import ITodoTaskList from '../models/ITodoTaskList';
+import { IWebPartContext } from "@microsoft/sp-webpart-base";
+import * as lodash from "@microsoft/sp-lodash-subset";
+import ITodoDataProvider from "../dataProviders/ITodoDataProvider";
+import ITodoItem from "../models/ITodoItem";
+import ITodoTaskList from "../models/ITodoTaskList";
 
 export default class MockDataProvider implements ITodoDataProvider {
   private _idCounter: number;
@@ -15,46 +15,46 @@ export default class MockDataProvider implements ITodoDataProvider {
   constructor() {
     this._idCounter = 0;
     this._taskLists = [
-      this._createMockTaskList('1', 'List One'),
-      this._createMockTaskList('2', 'List Two'),
-      this._createMockTaskList('3', 'List Three'),
+      this._createMockTaskList("1", "List One"),
+      this._createMockTaskList("2", "List Two"),
+      this._createMockTaskList("3", "List Three"),
     ];
 
     this._items = {
-      'List One': [
-        this._createMockTodoItem('Sunt filet mignon ut ut porchetta', true),
+      "List One": [
+        this._createMockTodoItem("Sunt filet mignon ut ut porchetta", true),
         this._createMockTodoItem(
-          'Laborum flank brisket esse chuck t-bone',
+          "Laborum flank brisket esse chuck t-bone",
           false
         ),
         this._createMockTodoItem(
-          'consectetur ex meatloaf boudin beef laborum pastrami',
+          "consectetur ex meatloaf boudin beef laborum pastrami",
           false
         ),
       ],
-      'List Two': [
+      "List Two": [
         this._createMockTodoItem(
-          'Striga! Ut custodiant te sermonem dicens',
+          "Striga! Ut custodiant te sermonem dicens",
           false
         ),
-        this._createMockTodoItem('Dixi sunt implicatae', false),
+        this._createMockTodoItem("Dixi sunt implicatae", false),
         this._createMockTodoItem(
-          'Est, ante me factus singulis decem gradibus',
+          "Est, ante me factus singulis decem gradibus",
           true
         ),
-        this._createMockTodoItem('Tu omne quod ille voluit', false),
+        this._createMockTodoItem("Tu omne quod ille voluit", false),
       ],
-      'List Three': [
+      "List Three": [
         this._createMockTodoItem(
-          'Integer massa lectus ultricies at lacinia et',
+          "Integer massa lectus ultricies at lacinia et",
           false
         ),
         this._createMockTodoItem(
-          'Phasellus sodales diam at interdum vulputate',
+          "Phasellus sodales diam at interdum vulputate",
           false
         ),
-        this._createMockTodoItem('finibus porttitor dolor', false),
-        this._createMockTodoItem('Vestibulum at rutrum nisi', false),
+        this._createMockTodoItem("finibus porttitor dolor", false),
+        this._createMockTodoItem("Vestibulum at rutrum nisi", false),
       ],
     };
   }
@@ -81,6 +81,10 @@ export default class MockDataProvider implements ITodoDataProvider {
     return new Promise<ITodoTaskList[]>((resolve) => {
       setTimeout(() => resolve(taskLists), 500);
     });
+  }
+
+  public createTaskList(title: string): Promise<ITodoTaskList> {
+    throw new Error("Not implemented");
   }
 
   public getItems(): Promise<ITodoItem[]> {
@@ -117,9 +121,10 @@ export default class MockDataProvider implements ITodoDataProvider {
   }
 
   public deleteItem(itemDeleted: ITodoItem): Promise<ITodoItem[]> {
-    this._items[this.selectedList.Title] = this._items[this.selectedList.Title].filter((item: ITodoItem)=> item.Id !==itemDeleted.Id);
+    this._items[this.selectedList.Title] = this._items[
+      this.selectedList.Title
+    ].filter((item: ITodoItem) => item.Id !== itemDeleted.Id);
     return this.getItems();
-
   }
 
   private _createMockTodoItem(title: string, isCompleted: boolean): ITodoItem {

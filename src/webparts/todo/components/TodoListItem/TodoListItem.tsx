@@ -7,7 +7,7 @@ import {
   IconButton,
   IIconProps,
 } from "office-ui-fabric-react";
-import { FormEvent, FunctionComponent, MouseEvent, useEffect } from "react";
+import { FormEvent, FunctionComponent, MouseEvent } from "react";
 import ITodoListItemProps from "./ITodoListItemProps";
 import styles from "./TodoListItem.module.scss";
 import ITodoItem from "../../models/ITodoItem";
@@ -16,10 +16,6 @@ const TodoListItem: FunctionComponent<ITodoListItemProps> = (props) => {
   const { item, isChecked, onCompleteListItem, onDeleteListItem } = props;
 
   const deleteIcon: IIconProps = { iconName: "Delete" };
-
-  useEffect(() => {
-    console.log(item);
-  }, [item]);
 
   const classTodoItem: string = css(
     styles.todoListItem,

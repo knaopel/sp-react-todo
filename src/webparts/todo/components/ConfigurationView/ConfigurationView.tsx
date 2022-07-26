@@ -1,18 +1,28 @@
-import * as React from 'react';
-import { ButtonType, DefaultButton } from 'office-ui-fabric-react';
-import styles from './ConfigurationView.module.scss';
-import IConfigurationViewProps from './IConfigurationViewProps';
+import * as React from "react";
+import {
+  ButtonType,
+  FontIcon,
+  IStackTokens,
+  mergeStyles,
+  PrimaryButton,
+  Stack,
+} from "office-ui-fabric-react";
+import styles from "./ConfigurationView.module.scss";
+import IConfigurationViewProps from "./IConfigurationViewProps";
 import {
   FunctionComponent,
   MouseEvent,
-  useState,
-} from 'react';
+} from "react";
 
 const ConfigurationView: FunctionComponent<IConfigurationViewProps> = (
   props
 ) => {
-  const [placeHolderText, setPlaceHolderText] = useState('Enter your todo');
-  const [inputValue, setInputValue] = useState('');
+  const iconClass: string = mergeStyles({
+    fontSize: 50,
+    height: 50,
+    width: 50,
+    margin: "0 25px",
+  });
 
   const handleConfigureButtonClick = (
     event?: MouseEvent<HTMLButtonElement>
@@ -20,37 +30,30 @@ const ConfigurationView: FunctionComponent<IConfigurationViewProps> = (
     props.onConfigure();
   };
 
+  const stackTokens: IStackTokens = {
+    childrenGap: 10,
+    padding: 10,
+  };
+
   return (
-    <div className='Placeholder'>
-      <div className='Placeholder-container ms-grid'>
-        <div className='ms-Grid-col ms-u-hiddenSm ms-u-md3' />
-        <div className='Placeholder-headContainer ms-Grid-col ms-u-sm12 ms-u-md6'>
-          <i
-            className={'Placeholder-icon ms-fontSize-su ms-Icon ' + props.icon}
-          />
-          <span className='Placeholder-text ms-fontWeight-light ms-fontSize-xxl'>
-            {props.iconText}
-          </span>
-        </div>
-        <div className='Placeholder-description ms-Grid-row'>
-          <span className='Placeholder-descriptionText'>
-            {props.description}
-          </span>
-        </div>
-        <div className='Placeholder-description ms-Grid-row'>
-          <DefaultButton
-            className={styles.configureButton}
-            buttonType={ButtonType.primary}
-            ariaLabel={props.buttonLabel}
-            // eslint-disable-next-line react/jsx-no-bind
-            onClick={handleConfigureButtonClick}
-          >
-            {props.buttonLabel}
-          </DefaultButton>
-        </div>
-        <div className='ms-Grid-col ms-u-hiddenSm ms-u-md3' />
-      </div>
-    </div>
+    <Stack tokens={stackTokens}>
+      <Stack horizontal horizontalAlign="center" tokens={stackTokens}>
+        <FontIcon iconName={props.icon} className={iconClass} />
+        <span className="Placeholder-text ms-fontWeight-light ms-fontSize-xxl">
+          {props.iconText}
+        </span>
+      </Stack>
+      <span className="Placeholder-descriptionText">{props.description}</span>
+      <PrimaryButton
+        className={styles.configureButton}
+        buttonType={ButtonType.primary}
+        ariaLabel={props.buttonLabel}
+        // eslint-disable-next-line react/jsx-no-bind
+        onClick={handleConfigureButtonClick}
+      >
+        {props.buttonLabel}
+      </PrimaryButton>
+    </Stack>
   );
 };
 

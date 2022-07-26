@@ -11,6 +11,9 @@ import {
   PropertyPaneDropdown,
   IPropertyPaneField,
   PropertyPaneLabel,
+  PropertyPaneTextField,
+  PropertyPaneButton,
+  PropertyPaneButtonType,
 } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import { IReadonlyTheme } from "@microsoft/sp-component-base";
@@ -49,15 +52,16 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
 
     this._openPropertyPane = this._openPropertyPane.bind(this);
 
-    this._loadTaskLists().then(
-      () => {
-        if (this.properties.spListIndex) {
-          this._setSelectedList(this.properties.spListIndex.toString());
-          this.context.statusRenderer.clearLoadingIndicator(this.domElement);
-        }
-      },
-      (err) => console.log(err)
-    );
+    this._populateTaskListSelector();
+    // this._loadTaskLists().then(
+    //   () => {
+    //     if (this.properties.spListIndex) {
+    //       this._setSelectedList(this.properties.spListIndex.toString());
+    //       this.context.statusRenderer.clearLoadingIndicator(this.domElement);
+    //     }
+    //   },
+    //   (err) => console.log(err)
+    // );
 
     return super.onInit();
   }
@@ -132,6 +136,18 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
       });
   }
 
+  private _populateTaskListSelector(): void {
+    this._loadTaskLists().then(
+      () => {
+        if (this.properties.spListIndex) {
+          this._setSelectedList(this.properties.spListIndex.toString());
+          this.context.statusRenderer.clearLoadingIndicator(this.domElement);
+        }
+      },
+      (err) => console.log(err)
+    );
+  }
+
   private _setSelectedList(value: string): void {
     const selectedIndex: number = lodash.findIndex(
       this._dropdownOptions,
@@ -193,6 +209,14 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
   }
 
+  private _createNewList(listName: string): Promise<void> {
+    return this._dataProvider.createTaskList(listName).then((list) => {
+      this.properties.spListIndex = list.Id;
+      this._populateTaskListSelector();
+      this._openPropertyPane();
+    });
+  }
+
   private _getGroupFields(): IPropertyPaneField<unknown>[] {
     const fields: IPropertyPaneField<unknown>[] = [];
 
@@ -208,6 +232,26 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
       fields.push(
         PropertyPaneLabel(null, {
           text: "Could not find task lists in your site. Create one or more task list and then try using the web part.",
+        })
+      );
+      fields.push(
+        PropertyPaneTextField("spNewListName", {
+          label: "New List Name",
+        })
+      );
+      fields.push(
+        PropertyPaneButton("spListAddButton", {
+          text: "Add",
+          buttonType: PropertyPaneButtonType.Primary,
+          onClick: () => {
+            const {
+              properties: { spNewListName: listName },
+            } = this;
+            this._createNewList(listName).then(
+              () => console.log(`List "${listName}" created.`),
+              (err) => console.error(err)
+            );
+          },
         })
       );
     }
