@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
   "bundles": {
-    "react-todo-web-part": {
+    "todo-web-part": {
       "components": [
         {
           "entrypoint": "./lib/webparts/todo/TodoWebPart.js",
@@ -21,7 +21,7 @@
   },
   "externals": {},
   "localizedResources": {
-    "ReactTodoWebPartStrings": "lib/webparts/todo/loc/{locale}.js",
+    "TodoWebPartStrings": "lib/webparts/todo/loc/{locale}.js",
     "ReactTodo2WebPartStrings": "lib/webparts/reactTodo2/loc/{locale}.js"
   }
 }

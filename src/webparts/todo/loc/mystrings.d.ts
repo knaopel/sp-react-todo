@@ -1,4 +1,4 @@
-declare interface IReactTodoWebPartStrings {
+declare interface ITodoWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
@@ -8,7 +8,7 @@ declare interface IReactTodoWebPartStrings {
   AppTeamsTabEnvironment: string;
 }
 
-declare module 'ReactTodoWebPartStrings' {
-  const strings: IReactTodoWebPartStrings;
+declare module "TodoWebPartStrings" {
+  const strings: ITodoWebPartStrings;
   export = strings;
 }

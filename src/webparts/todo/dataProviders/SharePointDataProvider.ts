@@ -1,15 +1,22 @@
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
 import ITodoItem from '../models/ITodoItem';
 import ITodoTaskList from '../models/ITodoTaskList';
 import ITodoDataProvider from './ITodoDataProvider';
 
 export default class SharePointDataProvider implements ITodoDataProvider {
+  // private _selectedListId: string;
   private _selectedList: ITodoTaskList;
   private _taskLists: ITodoTaskList[];
   private _listsUrl: string;
   private _listItemsUrl: string;
-  private _webPartContext: IWebPartContext;
+  private _webPartContext: WebPartContext;
+
+  // public constructor(webPartContext: WebPartContext, selectedlistId?: string) {
+  //   this._webPartContext = webPartContext;
+  //   this._listsUrl = `${webPartContext.pageContext.web.absoluteUrl}/_api/Web/Lists`;
+  //   // this._selectedListId = selectedListId ? selectedListId : null;
+  // }
 
   public set selectedList(value: ITodoTaskList) {
     this._selectedList = value;
@@ -19,13 +26,21 @@ export default class SharePointDataProvider implements ITodoDataProvider {
   public get selectedList(): ITodoTaskList {
     return this._selectedList;
   }
+  // public set selectedListId(value: string) {
+  //   this._selectedListId = value;
+  //   this._listItemsUrl = `${this._listsUrl}(guid'${value}')/Items`;
+  // }
 
-  public set webPartContext(value: IWebPartContext) {
+  // public get selectedListId(): string {
+  //   return this._selectedListId;
+  // }
+
+  public set webPartContext(value: WebPartContext) {
     this._webPartContext = value;
     this._listsUrl = `${this._webPartContext.pageContext.web.absoluteUrl}/_api/Web/Lists`;
   }
 
-  public get webPartContext(): IWebPartContext {
+  public get webPartContext(): WebPartContext {
     return this._webPartContext;
   }
 
@@ -33,6 +48,7 @@ export default class SharePointDataProvider implements ITodoDataProvider {
     const listTemplateId: string = '171';
     const queryString: string = `?$filter=BaseTemplate eq ${listTemplateId}`;
     const queryUrl: string = this._listsUrl + queryString;
+    
     return this._webPartContext.spHttpClient
       .get(queryUrl, SPHttpClient.configurations.v1)
       .then((response: SPHttpClientResponse) => {

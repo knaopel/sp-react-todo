@@ -1,0 +1,38 @@
+// @import "~office-ui-fabric-core/dist/sass/Fabric";
+
+.todoListItem {
+  border-width: 1px;
+  // border-color: $ms-color-neutralTertiaryAlt;
+  border-color: #c8c8c8;
+  border-style: solid;
+
+  .itemTaskRow {
+    padding: 16px 20px 8px 20px;
+
+    @media (max-width: 600px) {
+      padding: 8px 20px 8px 4px;
+    }
+
+    .deleteButton {
+      &:hover,
+      &:focus {
+        // color: $ms-color-themePrimary;
+        color: #0078d7;
+      }
+    }
+
+    .checkbox {
+      :global .ms-Label {
+        // color: $ms-color-neutralPrimary;
+        color: #333;
+        font-size: 18px;
+        padding: 0 0 0 36px;
+      }
+    }
+
+    &.isCompleted {
+      // background-color: $ms-color-neutralLighter;
+      background-color: #f4f4f4;
+    }
+  }
+}

@@ -1,6 +1,4 @@
-// @import '~office-ui-fabric-core/dist/sass/mixins/Grid.Mixins.scss';
-
-.configurationView {
+.todoForm {
   display: table;
 
   .textField {
@@ -12,11 +10,11 @@
       min-width: 80px;
     }
   }
-  .configureButtonCell {
+  .addButtonCell {
     display: table-cell;
     vertical-align: top;
 
-    .configureButton {
+    .addButton {
       margin-left: 10px;
       white-space: nowrap;
       height: 32px;

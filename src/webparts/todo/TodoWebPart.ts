@@ -13,31 +13,23 @@ import {
   PropertyPaneLabel,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as lodash from '@microsoft/sp-lodash-subset';
-import * as strings from 'ReactTodoWebPartStrings';
+import * as strings from 'TodoWebPartStrings';
 import TodoContainer from './components/TodoContainer/TodoContainer';
-import ReactTodo from './components/ReactTodo';
-import { IReactTodoProps } from './components/IReactTodoProps';
 import ITodoWebPartProps from './ITodoWebPartProps';
 import ITodoDataProvider from './dataProviders/ITodoDataProvider';
 import ITodoTaskList from './models/ITodoTaskList';
 import SharePointDataProvider from './dataProviders/SharePointDataProvider';
 import MockDataProvider from './tests/MockDataProvider';
-import { thProperties } from 'office-ui-fabric-react';
 import ITodoContainerProps from './components/TodoContainer/ITodoContainerProps';
 
 export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps> {
-  private _dropdownOptions: IPropertyPaneDropdownOption[];
+  private _dropdownOptions: IPropertyPaneDropdownOption[] = [];
   private _dataProvider: ITodoDataProvider;
   private _selectedList: ITodoTaskList;
   private _disableDropdown: boolean;
-  // existing
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
 
   protected onInit(): Promise<void> {
-    this._environmentMessage = this._getEnvironmentMessage();
     this.context.statusRenderer.displayLoadingIndicator(
       this.domElement,
       'Todo'
@@ -53,12 +45,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     this._openPropertyPane = this._openPropertyPane.bind(this);
 
     this._loadTaskLists().then(
-      () => {
-        if (this.properties.spListIndex) {
-          this._setSelectedList(this.properties.spListIndex.toString());
-          this.context.statusRenderer.clearLoadingIndicator(this.domElement);
-        }
-      },
+      () => null,
       (err) => console.log(err)
     );
 
@@ -69,50 +56,18 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     /*
     Create the react element we want to render in the web part DOM. Pass the required props to the react component.
     */
-    const element: React.ReactElement<ITodoContainerProps> = React.createElement(
-      TodoContainer,
-      {
+    if (!this._dataProvider.selectedList && this.properties.spListIndex) {
+      this._setSelectedList(this.properties.spListIndex);
+    }
+    const element: React.ReactElement<ITodoContainerProps> =
+      React.createElement(TodoContainer, {
         dataProvider: this._dataProvider,
+        selectedListId: this._selectedList ? this._selectedList.Id : null,
         webPartDisplayMode: this.displayMode,
-        configureStartCallback: this._openPropertyPane
-      }
-    );
+        configureStartCallback: this._openPropertyPane,
+      });
 
     ReactDom.render(element, this.domElement);
-  }
-
-  private _getEnvironmentMessage(): string {
-    if (!!this.context.sdks.microsoftTeams) {
-      // running in Teams
-      return this.context.isServedFromLocalhost
-        ? strings.AppLocalEnvironmentTeams
-        : strings.AppTeamsTabEnvironment;
-    }
-
-    return this.context.isServedFromLocalhost
-      ? strings.AppLocalEnvironmentSharePoint
-      : strings.AppSharePointEnvironment;
-  }
-
-  protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
-    if (!currentTheme) {
-      return;
-    }
-
-    this._isDarkTheme = !!currentTheme.isInverted;
-    const { semanticColors } = currentTheme;
-
-    if (semanticColors) {
-      this.domElement.style.setProperty(
-        '--bodyText',
-        semanticColors.bodyText || null
-      );
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
-      this.domElement.style.setProperty(
-        '--linkHovered',
-        semanticColors.linkHovered || null
-      );
-    }
   }
 
   protected onDispose(): void {
@@ -123,6 +78,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     return Version.parse('1.0');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _loadTaskLists(): Promise<any> {
     return this._dataProvider
       .getTaskLists()
@@ -133,6 +89,8 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
           this._dropdownOptions = taskLists.map((list: ITodoTaskList) => {
             return { key: list.Id, text: list.Title };
           });
+          if (this.properties.spListIndex)
+            this._setSelectedList(this.properties.spListIndex);
         }
       });
   }
@@ -151,10 +109,23 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
         Title: selectedDropDownOption.text,
         Id: selectedDropDownOption.key.toString(),
       };
-
       this._dataProvider.selectedList = this._selectedList;
+      this.render();
     }
   }
+
+  // private _getListFromListId(listId: string): ITodoTaskList {
+  //   const matchingLists: ITodoTaskList[] = this._todoTaskLists.filter(
+  //     (l: ITodoTaskList) => {
+  //       return l.Id === listId;
+  //     }
+  //   );
+  //   if (matchingLists.length > 0) {
+  //     return matchingLists[0];
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   private _openPropertyPane(): void {
     this.context.propertyPane.open();
@@ -178,8 +149,29 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     };
   }
 
-  private _getGroupFields(): IPropertyPaneField<any>[] {
-    const fields: IPropertyPaneField<any>[] = [];
+  protected onPropertyPaneFieldChanged(
+    propertyPath: string,
+    oldValue: string,
+    newValue: string
+  ): void {
+    /*
+      Check the property path to see which property pane field changed.
+      If the property path matches the dropdown, then we set that list as the selected list for the web part.
+      */
+    if (propertyPath === 'spListIndex') {
+      this._setSelectedList(newValue);
+    }
+
+    /*
+    Finally, tell property pane to re-render the WebPart.
+    This is valid for reactive property pane
+    */
+    super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
+    this.render();
+  }
+
+  private _getGroupFields(): IPropertyPaneField<unknown>[] {
+    const fields: IPropertyPaneField<unknown>[] = [];
 
     fields.push(
       PropertyPaneDropdown('spListIndex', {

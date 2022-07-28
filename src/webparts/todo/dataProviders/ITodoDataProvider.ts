@@ -1,10 +1,10 @@
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
 import ITodoItem from '../models/ITodoItem';
 import ITodoTaskList from '../models/ITodoTaskList';
 
 interface ITodoDataProvider {
   selectedList: ITodoTaskList;
-  webPartContext: IWebPartContext;
+  webPartContext: WebPartContext;
   getTaskLists(): Promise<ITodoTaskList[]>;
   getItems(): Promise<ITodoItem[]>;
   createItem(title: string): Promise<ITodoItem[]>;
