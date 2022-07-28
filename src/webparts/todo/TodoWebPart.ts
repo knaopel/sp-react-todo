@@ -13,9 +13,8 @@ import {
   PropertyPaneLabel,
 } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
-import { IReadonlyTheme } from "@microsoft/sp-component-base";
 import * as lodash from "@microsoft/sp-lodash-subset";
-import * as strings from "ReactTodoWebPartStrings";
+import * as strings from "TodoWebPartStrings";
 import TodoContainer from "./components/TodoContainer/TodoContainer";
 import ITodoWebPartProps from "./ITodoWebPartProps";
 import ITodoDataProvider from "./dataProviders/ITodoDataProvider";
@@ -29,12 +28,8 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
   private _dataProvider: ITodoDataProvider;
   private _selectedList: ITodoTaskList;
   private _disableDropdown: boolean;
-  // existing
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = "";
 
   protected onInit(): Promise<void> {
-    this._environmentMessage = this._getEnvironmentMessage();
     this.context.statusRenderer.displayLoadingIndicator(
       this.domElement,
       "Todo"
@@ -66,48 +61,18 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     /*
     Create the react element we want to render in the web part DOM. Pass the required props to the react component.
     */
+    if (!this._dataProvider.selectedList && this.properties.spListIndex) {
+      this._setSelectedList(this.properties.spListIndex);
+    }
     const element: React.ReactElement<ITodoContainerProps> =
       React.createElement(TodoContainer, {
         dataProvider: this._dataProvider,
+        selectedListId: this._selectedList ? this._selectedList.Id : null,
         webPartDisplayMode: this.displayMode,
         configureStartCallback: this._openPropertyPane,
       });
 
     ReactDom.render(element, this.domElement);
-  }
-
-  private _getEnvironmentMessage(): string {
-    if (!!this.context.sdks.microsoftTeams) {
-      // running in Teams
-      return this.context.isServedFromLocalhost
-        ? strings.AppLocalEnvironmentTeams
-        : strings.AppTeamsTabEnvironment;
-    }
-
-    return this.context.isServedFromLocalhost
-      ? strings.AppLocalEnvironmentSharePoint
-      : strings.AppSharePointEnvironment;
-  }
-
-  protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
-    if (!currentTheme) {
-      return;
-    }
-
-    this._isDarkTheme = !!currentTheme.isInverted;
-    const { semanticColors } = currentTheme;
-
-    if (semanticColors) {
-      this.domElement.style.setProperty(
-        "--bodyText",
-        semanticColors.bodyText || null
-      );
-      this.domElement.style.setProperty("--link", semanticColors.link || null);
-      this.domElement.style.setProperty(
-        "--linkHovered",
-        semanticColors.linkHovered || null
-      );
-    }
   }
 
   protected onDispose(): void {

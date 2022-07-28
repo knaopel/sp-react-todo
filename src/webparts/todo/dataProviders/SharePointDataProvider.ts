@@ -1,15 +1,18 @@
-import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import ITodoItem from '../models/ITodoItem';
-import ITodoTaskList from '../models/ITodoTaskList';
-import ITodoDataProvider from './ITodoDataProvider';
+import {
+  SPHttpClient,
+  SPHttpClientResponse,
+} from "@microsoft/sp-http";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+import ITodoItem from "../models/ITodoItem";
+import ITodoTaskList from "../models/ITodoTaskList";
+import ITodoDataProvider from "./ITodoDataProvider";
 
 export default class SharePointDataProvider implements ITodoDataProvider {
   private _selectedList: ITodoTaskList;
   private _taskLists: ITodoTaskList[];
   private _listsUrl: string;
   private _listItemsUrl: string;
-  private _webPartContext: IWebPartContext;
+  private _webPartContext: WebPartContext;
 
   public set selectedList(value: ITodoTaskList) {
     this._selectedList = value;
@@ -20,17 +23,17 @@ export default class SharePointDataProvider implements ITodoDataProvider {
     return this._selectedList;
   }
 
-  public set webPartContext(value: IWebPartContext) {
+  public set webPartContext(value: WebPartContext) {
     this._webPartContext = value;
     this._listsUrl = `${this._webPartContext.pageContext.web.absoluteUrl}/_api/Web/Lists`;
   }
 
-  public get webPartContext(): IWebPartContext {
+  public get webPartContext(): WebPartContext {
     return this._webPartContext;
   }
 
   public getTaskLists(): Promise<ITodoTaskList[]> {
-    const listTemplateId: string = '171';
+    const listTemplateId: string = "171";
     const queryString: string = `?$filter=BaseTemplate eq ${listTemplateId}`;
     const queryUrl: string = this._listsUrl + queryString;
     return this._webPartContext.spHttpClient
@@ -88,7 +91,7 @@ export default class SharePointDataProvider implements ITodoDataProvider {
     title: string
   ): Promise<SPHttpClientResponse> {
     const body: {} = {
-      '@data.type': `${this._selectedList.ListItemEntityTypeFullName}`,
+      "@data.type": `${this._selectedList.ListItemEntityTypeFullName}`,
       Title: title,
     };
 
@@ -103,11 +106,11 @@ export default class SharePointDataProvider implements ITodoDataProvider {
   ): Promise<SPHttpClientResponse> {
     const itemDeletedUrl: string = `${this._listItemsUrl}(${item.Id})`;
     const headers: Headers = new Headers();
-    headers.append('If-Match', '*');
+    headers.append("If-Match", "*");
 
     return client.fetch(itemDeletedUrl, SPHttpClient.configurations.v1, {
       headers,
-      method: 'DELETE',
+      method: "DELETE",
     });
   }
 
@@ -118,17 +121,17 @@ export default class SharePointDataProvider implements ITodoDataProvider {
     const itemUpdatedUrl: string = `${this._listItemsUrl}(${itemUpdated.Id})`;
 
     const headers: Headers = new Headers();
-    headers.append('If-Match', '*');
+    headers.append("If-Match", "*");
 
     const body: {} = {
-      '@data.type': `${this._selectedList.ListItemEntityTypeFullName}`,
+      "@data.type": `${this._selectedList.ListItemEntityTypeFullName}`,
       PercentComplete: itemUpdated.PercentComplete,
     };
 
     return client.fetch(itemUpdatedUrl, SPHttpClient.configurations.v1, {
       body: JSON.stringify(body),
       headers,
-      method: 'PATCH',
+      method: "PATCH",
     });
   }
 }
