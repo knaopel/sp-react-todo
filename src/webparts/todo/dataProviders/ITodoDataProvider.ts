@@ -1,6 +1,6 @@
-import { WebPartContext } from "@microsoft/sp-webpart-base";
-import ITodoItem from "../models/ITodoItem";
-import ITodoTaskList from "../models/ITodoTaskList";
+import { WebPartContext } from '@microsoft/sp-webpart-base';
+import ITodoItem from '../models/ITodoItem';
+import ITodoTaskList from '../models/ITodoTaskList';
 
 interface ITodoDataProvider {
   selectedList: ITodoTaskList;

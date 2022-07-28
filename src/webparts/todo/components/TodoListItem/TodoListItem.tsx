@@ -43,7 +43,7 @@ const TodoListItem: FunctionComponent<ITodoListItemProps> = (props) => {
   const stackTokens: IStackTokens = { childrenGap: 30 };
 
   return (
-    <div role="row" className={classTodoItem} data-is-focusable={true}>
+    <div className={classTodoItem} data-is-focusable={true}>
       <FocusZone direction={FocusZoneDirection.horizontal}>
         <Stack horizontal horizontalAlign="space-around" tokens={stackTokens}>
           <Stack.Item grow align="center">

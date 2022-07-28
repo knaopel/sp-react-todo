@@ -1,30 +1,30 @@
-import * as React from "react";
-import * as ReactDom from "react-dom";
+import * as React from 'react';
+import * as ReactDom from 'react-dom';
 import {
   Environment,
   EnvironmentType,
   Version,
-} from "@microsoft/sp-core-library";
+} from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
   IPropertyPaneDropdownOption,
   PropertyPaneDropdown,
   IPropertyPaneField,
   PropertyPaneLabel,
-} from "@microsoft/sp-property-pane";
-import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
-import * as lodash from "@microsoft/sp-lodash-subset";
-import * as strings from "TodoWebPartStrings";
-import TodoContainer from "./components/TodoContainer/TodoContainer";
-import ITodoWebPartProps from "./ITodoWebPartProps";
-import ITodoDataProvider from "./dataProviders/ITodoDataProvider";
-import ITodoTaskList from "./models/ITodoTaskList";
-import SharePointDataProvider from "./dataProviders/SharePointDataProvider";
-import MockDataProvider from "./tests/MockDataProvider";
-import ITodoContainerProps from "./components/TodoContainer/ITodoContainerProps";
+} from '@microsoft/sp-property-pane';
+import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+import * as lodash from '@microsoft/sp-lodash-subset';
+import * as strings from 'TodoWebPartStrings';
+import TodoContainer from './components/TodoContainer/TodoContainer';
+import ITodoWebPartProps from './ITodoWebPartProps';
+import ITodoDataProvider from './dataProviders/ITodoDataProvider';
+import ITodoTaskList from './models/ITodoTaskList';
+import SharePointDataProvider from './dataProviders/SharePointDataProvider';
+import MockDataProvider from './tests/MockDataProvider';
+import ITodoContainerProps from './components/TodoContainer/ITodoContainerProps';
 
 export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps> {
-  private _dropdownOptions: IPropertyPaneDropdownOption[];
+  private _dropdownOptions: IPropertyPaneDropdownOption[] = [];
   private _dataProvider: ITodoDataProvider;
   private _selectedList: ITodoTaskList;
   private _disableDropdown: boolean;
@@ -32,7 +32,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
   protected onInit(): Promise<void> {
     this.context.statusRenderer.displayLoadingIndicator(
       this.domElement,
-      "Todo"
+      'Todo'
     );
 
     if (DEBUG && Environment.type === EnvironmentType.Local) {
@@ -45,12 +45,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     this._openPropertyPane = this._openPropertyPane.bind(this);
 
     this._loadTaskLists().then(
-      () => {
-        if (this.properties.spListIndex) {
-          this._setSelectedList(this.properties.spListIndex.toString());
-          this.context.statusRenderer.clearLoadingIndicator(this.domElement);
-        }
-      },
+      () => null,
       (err) => console.log(err)
     );
 
@@ -80,10 +75,11 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
   }
 
   protected get dataVersion(): Version {
-    return Version.parse("1.0");
+    return Version.parse('1.0');
   }
 
-  private _loadTaskLists(): Promise<void | { key: string; text: string }> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private _loadTaskLists(): Promise<any> {
     return this._dataProvider
       .getTaskLists()
       .then((taskLists: ITodoTaskList[]) => {
@@ -93,6 +89,8 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
           this._dropdownOptions = taskLists.map((list: ITodoTaskList) => {
             return { key: list.Id, text: list.Title };
           });
+          if (this.properties.spListIndex)
+            this._setSelectedList(this.properties.spListIndex);
         }
       });
   }
@@ -111,10 +109,23 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
         Title: selectedDropDownOption.text,
         Id: selectedDropDownOption.key.toString(),
       };
-
       this._dataProvider.selectedList = this._selectedList;
+      this.render();
     }
   }
+
+  // private _getListFromListId(listId: string): ITodoTaskList {
+  //   const matchingLists: ITodoTaskList[] = this._todoTaskLists.filter(
+  //     (l: ITodoTaskList) => {
+  //       return l.Id === listId;
+  //     }
+  //   );
+  //   if (matchingLists.length > 0) {
+  //     return matchingLists[0];
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   private _openPropertyPane(): void {
     this.context.propertyPane.open();
@@ -140,15 +151,15 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
 
   protected onPropertyPaneFieldChanged(
     propertyPath: string,
-    oldValue: string | boolean,
-    newValue: string | boolean
+    oldValue: string,
+    newValue: string
   ): void {
     /*
       Check the property path to see which property pane field changed.
       If the property path matches the dropdown, then we set that list as the selected list for the web part.
       */
-    if (propertyPath === "spListIndex") {
-      this._setSelectedList(newValue.toString());
+    if (propertyPath === 'spListIndex') {
+      this._setSelectedList(newValue);
     }
 
     /*
@@ -156,14 +167,15 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     This is valid for reactive property pane
     */
     super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
+    this.render();
   }
 
   private _getGroupFields(): IPropertyPaneField<unknown>[] {
     const fields: IPropertyPaneField<unknown>[] = [];
 
     fields.push(
-      PropertyPaneDropdown("spListIndex", {
-        label: "Select a list",
+      PropertyPaneDropdown('spListIndex', {
+        label: 'Select a list',
         disabled: this._disableDropdown,
         options: this._dropdownOptions,
       })
@@ -172,7 +184,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     if (this._disableDropdown) {
       fields.push(
         PropertyPaneLabel(null, {
-          text: "Could not find task lists in your site. Create one or more task list and then try using the web part.",
+          text: 'Could not find task lists in your site. Create one or more task list and then try using the web part.',
         })
       );
     }

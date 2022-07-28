@@ -11,9 +11,9 @@ export default class MockDataProvider implements ITodoDataProvider {
   private _selectedList: ITodoTaskList;
   private _webPartContext: WebPartContext;
 
-  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
-  constructor() {
+  public constructor() {
     this._idCounter = 0;
+
     this._taskLists = [
       this._createMockTaskList("1", "List One"),
       this._createMockTaskList("2", "List Two"),
