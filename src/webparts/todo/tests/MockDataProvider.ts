@@ -1,4 +1,4 @@
-import { IWebPartContext } from "@microsoft/sp-webpart-base";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
 import * as lodash from "@microsoft/sp-lodash-subset";
 import ITodoDataProvider from "../dataProviders/ITodoDataProvider";
 import ITodoItem from "../models/ITodoItem";
@@ -9,7 +9,7 @@ export default class MockDataProvider implements ITodoDataProvider {
   private _taskLists: ITodoTaskList[];
   private _items: { [listName: string]: ITodoItem[] };
   private _selectedList: ITodoTaskList;
-  private _webPartContext: IWebPartContext;
+  private _webPartContext: WebPartContext;
 
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
   constructor() {
@@ -59,11 +59,11 @@ export default class MockDataProvider implements ITodoDataProvider {
     };
   }
 
-  public set webPartContext(value: IWebPartContext) {
+  public set webPartContext(value: WebPartContext) {
     this._webPartContext = value;
   }
 
-  public get webPartContext(): IWebPartContext {
+  public get webPartContext(): WebPartContext {
     return this._webPartContext;
   }
 
@@ -81,10 +81,6 @@ export default class MockDataProvider implements ITodoDataProvider {
     return new Promise<ITodoTaskList[]>((resolve) => {
       setTimeout(() => resolve(taskLists), 500);
     });
-  }
-
-  public createTaskList(title: string): Promise<ITodoTaskList> {
-    throw new Error("Not implemented");
   }
 
   public getItems(): Promise<ITodoItem[]> {

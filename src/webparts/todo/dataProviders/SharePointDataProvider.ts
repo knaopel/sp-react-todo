@@ -1,9 +1,8 @@
 import {
-  ISPHttpClientOptions,
   SPHttpClient,
   SPHttpClientResponse,
 } from "@microsoft/sp-http";
-import { IWebPartContext } from "@microsoft/sp-webpart-base";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
 import ITodoItem from "../models/ITodoItem";
 import ITodoTaskList from "../models/ITodoTaskList";
 import ITodoDataProvider from "./ITodoDataProvider";
@@ -13,7 +12,7 @@ export default class SharePointDataProvider implements ITodoDataProvider {
   private _taskLists: ITodoTaskList[];
   private _listsUrl: string;
   private _listItemsUrl: string;
-  private _webPartContext: IWebPartContext;
+  private _webPartContext: WebPartContext;
 
   public set selectedList(value: ITodoTaskList) {
     this._selectedList = value;
@@ -24,12 +23,12 @@ export default class SharePointDataProvider implements ITodoDataProvider {
     return this._selectedList;
   }
 
-  public set webPartContext(value: IWebPartContext) {
+  public set webPartContext(value: WebPartContext) {
     this._webPartContext = value;
     this._listsUrl = `${this._webPartContext.pageContext.web.absoluteUrl}/_api/Web/Lists`;
   }
 
-  public get webPartContext(): IWebPartContext {
+  public get webPartContext(): WebPartContext {
     return this._webPartContext;
   }
 
@@ -45,23 +44,6 @@ export default class SharePointDataProvider implements ITodoDataProvider {
       .then((json: { value: ITodoTaskList[] }) => {
         this._taskLists = json.value;
         return this._taskLists;
-      });
-  }
-
-  public createTaskList(listName: string): Promise<ITodoTaskList> {
-    const listDefinition: { Title: string; BaseTemplate: number } = {
-      Title: listName,
-      BaseTemplate: 171,
-    };
-    const spHttpClientOptions: ISPHttpClientOptions = {
-      body: JSON.stringify(listDefinition),
-    };
-    return this._webPartContext.spHttpClient
-      .post(this._listsUrl, SPHttpClient.configurations.v1, spHttpClientOptions)
-      .then((response: SPHttpClientResponse) => {
-        if (response.ok) {
-          return response.json().then((list: ITodoTaskList) => list);
-        }
       });
   }
 

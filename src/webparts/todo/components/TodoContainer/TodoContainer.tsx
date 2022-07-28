@@ -8,11 +8,14 @@ import { DisplayMode } from "@microsoft/sp-core-library";
 import TodoForm from "../TodoForm/TodoForm";
 import TodoList from "../TodoList/TodoList";
 
-const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
+const TodoContainer: React.FunctionComponent<ITodoContainerProps> = ({
+  webPartDisplayMode,
+  dataProvider,
+  selectedListId,
+  configureStartCallback,
+}) => {
   const [showPlaceholder, setShowPlaceholder] = React.useState(true);
   const [todoItems, setTodoItems] = React.useState([]);
-  const { webPartDisplayMode, dataProvider, configureStartCallback } = props;
-  const { selectedList } = dataProvider;
 
   const createTodoItem = (inputValue: string): Promise<void> => {
     return dataProvider.createItem(inputValue).then((items: ITodoItem[]) => {
@@ -33,20 +36,21 @@ const TodoContainer: React.FunctionComponent<ITodoContainerProps> = (props) => {
   };
 
   React.useEffect(() => {
-    if (selectedList) {
-      if (selectedList.Id !== "0") {
+    console.log('useEffect() runs', selectedListId);
+    if (selectedListId) {
+      if (selectedListId !== "0") {
         setShowPlaceholder(false);
         dataProvider.getItems().then(
           (items: ITodoItem[]) => setTodoItems(items),
           (err) => console.log(err)
         );
-      } else if (selectedList.Id === "0") {
+      } else if (selectedListId === "0") {
         setShowPlaceholder(true);
       }
     } else {
       setShowPlaceholder(true);
     }
-  }, [dataProvider, selectedList, showPlaceholder]);
+  }, [dataProvider, selectedListId, showPlaceholder]);
 
   const configureWebPart = (): void => {
     configureStartCallback();
