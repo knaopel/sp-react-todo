@@ -22,10 +22,12 @@ import ITodoTaskList from './models/ITodoTaskList';
 import SharePointDataProvider from './dataProviders/SharePointDataProvider';
 import MockDataProvider from './tests/MockDataProvider';
 import ITodoContainerProps from './components/TodoContainer/ITodoContainerProps';
+import { SharePointStore } from './models';
 
 export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps> {
   private _dropdownOptions: IPropertyPaneDropdownOption[] = [];
   private _dataProvider: ITodoDataProvider;
+  private _sharePointStore: SharePointStore;
   private _selectedList: ITodoTaskList;
   private _disableDropdown: boolean;
 
@@ -40,6 +42,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
     } else {
       this._dataProvider = new SharePointDataProvider();
       this._dataProvider.webPartContext = this.context;
+      this._sharePointStore = new SharePointStore(this.context);
     }
 
     this._openPropertyPane = this._openPropertyPane.bind(this);
