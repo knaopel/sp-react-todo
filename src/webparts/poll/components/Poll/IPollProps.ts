@@ -1,4 +1,4 @@
-export interface IReactTodo2Props {
+export interface IPollProps {
   description: string;
   isDarkTheme: boolean;
   environmentMessage: string;

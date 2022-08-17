@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styles from './ReactTodo2.module.scss';
-import { IReactTodo2Props } from './IReactTodo2Props';
+import styles from './Poll.module.scss';
+import { IPollProps } from './IPollProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 
-export default class ReactTodo2 extends React.Component<IReactTodo2Props, {}> {
-  public render(): React.ReactElement<IReactTodo2Props> {
+export default class ReactTodo2 extends React.Component<IPollProps, {}> {
+  public render(): React.ReactElement<IPollProps> {
     const {
       description,
       isDarkTheme,
@@ -28,13 +28,13 @@ export default class ReactTodo2 extends React.Component<IReactTodo2Props, {}> {
           </p>
           <h4>Learn more about SPFx development:</h4>
           <ul className={styles.links}>
-            <li><a href="https://aka.ms/spfx" target="_blank" rel="noreferrer">SharePoint Framework Overview</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-graph" target="_blank" rel="noreferrer">Use Microsoft Graph in your solution</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-teams" target="_blank" rel="noreferrer">Build for Microsoft Teams using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-viva" target="_blank" rel="noreferrer">Build for Microsoft Viva Connections using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-store" target="_blank" rel="noreferrer">Publish SharePoint Framework applications to the marketplace</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-api" target="_blank" rel="noreferrer">SharePoint Framework API reference</a></li>
-            <li><a href="https://aka.ms/m365pnp" target="_blank" rel="noreferrer">Microsoft 365 Developer Community</a></li>
+            <li><a href="https://aka.ms/spfx" target="_blank" rel="noreferrer noopener">SharePoint Framework Overview</a></li>
+            <li><a href="https://aka.ms/spfx-yeoman-graph" target="_blank" rel="noreferrer noopener">Use Microsoft Graph in your solution</a></li>
+            <li><a href="https://aka.ms/spfx-yeoman-teams" target="_blank" rel="noreferrer noopener">Build for Microsoft Teams using SharePoint Framework</a></li>
+            <li><a href="https://aka.ms/spfx-yeoman-viva" target="_blank" rel="noreferrer noopener">Build for Microsoft Viva Connections using SharePoint Framework</a></li>
+            <li><a href="https://aka.ms/spfx-yeoman-store" target="_blank" rel="noreferrer noopener">Publish SharePoint Framework applications to the marketplace</a></li>
+            <li><a href="https://aka.ms/spfx-yeoman-api" target="_blank" rel="noreferrer noopener">SharePoint Framework API reference</a></li>
+            <li><a href="https://aka.ms/m365pnp" target="_blank" rel="noreferrer noopener">Microsoft 365 Developer Community</a></li>
           </ul>
         </div>
       </section>
