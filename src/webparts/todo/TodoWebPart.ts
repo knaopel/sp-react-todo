@@ -23,11 +23,13 @@ import SharePointDataProvider from './dataProviders/SharePointDataProvider';
 import MockDataProvider from './tests/MockDataProvider';
 import ITodoContainerProps from './components/TodoContainer/ITodoContainerProps';
 import { SharePointStore } from './models';
+import ListService from '../../services/ListService';
 
 export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps> {
   private _dropdownOptions: IPropertyPaneDropdownOption[] = [];
   private _dataProvider: ITodoDataProvider;
   private _sharePointStore: SharePointStore;
+  private _listService: ListService;
   private _selectedList: ITodoTaskList;
   private _disableDropdown: boolean;
 
@@ -43,6 +45,7 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
       this._dataProvider = new SharePointDataProvider();
       this._dataProvider.webPartContext = this.context;
       this._sharePointStore = new SharePointStore(this.context);
+      this._listService = new ListService(this._sharePointStore);
     }
 
     this._openPropertyPane = this._openPropertyPane.bind(this);
@@ -51,6 +54,10 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
       () => null,
       (err) => console.log(err)
     );
+
+    this._loadSPTaskLists()
+      .then((lists: ITodoTaskList[]) => console.log(lists))
+      .catch((err: Error) => console.error(err));
 
     return super.onInit();
   }
@@ -96,6 +103,11 @@ export default class TodoWebPart extends BaseClientSideWebPart<ITodoWebPartProps
             this._setSelectedList(this.properties.spListIndex);
         }
       });
+  }
+
+  // eslint-disable-next-line @microsoft/spfx/no-async-await
+  private async _loadSPTaskLists(): Promise<ITodoTaskList[]> {
+    return await this._listService.getAsync();
   }
 
   private _setSelectedList(value: string): void {
