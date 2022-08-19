@@ -9,19 +9,19 @@ import {   Environment,   EnvironmentType,   Version, } from '@microsoft/sp-core
 
 import * as strings from 'PollStrings';
 import { IPollWebPartProps } from './IPollWebPartProps';
-// import ReactTodo2 from './components/ReactTodo2';
 import { IMainProps, Main } from './components/Main';
+import { IPollService, MockPollService, PollService } from './services';
 
 export default class PollWebPart extends BaseClientSideWebPart<IPollWebPartProps> {
-  // private pollService: IPollService;
+  private _pollService: IPollService;
 
   protected onInit(): Promise<void> {
     this._configureWebPart = this._configureWebPart.bind(this);
 
     if (DEBUG && Environment.type === EnvironmentType.Local) {
-      // this.pollService = new MockPollService();
+      this._pollService = new MockPollService();
     } else {
-      // this.pollService = new PollService(this.context);
+      this._pollService = new PollService(this.context);
     }
 
     return super.onInit();
@@ -31,13 +31,13 @@ export default class PollWebPart extends BaseClientSideWebPart<IPollWebPartProps
     const element: React.ReactElement<IMainProps> = React.createElement(
       Main,
       {
-        // listName: this.properties.listName,
-        // pollTitle: this.properties.pollTitle,
-        // pollDescription: this.properties.pollDescription,
+        listName: this.properties.listName,
+        pollTitle: this.properties.pollTitle,
+        pollDescription: this.properties.pollDescription,
         needsConfiguration: this._needsConfiguration(),
-        // displayMode: this.displayMode,
+        displayMode: this.displayMode,
         configureWebPart: this._configureWebPart,
-        // pollService: this.pollService
+        pollService: this._pollService
       }
     );
 
