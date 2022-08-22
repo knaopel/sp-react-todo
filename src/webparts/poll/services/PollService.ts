@@ -12,7 +12,11 @@ import {
 } from '../services';
 
 export class PollService implements IPollService {
-  public constructor(private context: IWebPartContext) {}
+  private _context: IWebPartContext;
+
+  public constructor(context: IWebPartContext) {
+    this._context = context;
+  }
 
   public getVoteOptions(listName: string): Promise<IVoteOption[]> {
     const httpClientOptions: ISPHttpClientOptions =
@@ -23,9 +27,9 @@ export class PollService implements IPollService {
         resolve: (voteOptions: IVoteOption[]) => void,
         reject: (error?: unknown) => void
       ): void => {
-        this.context.spHttpClient
+        this._context.spHttpClient
           .get(
-            this.context.pageContext.web.serverRelativeUrl +
+            this._context.pageContext.web.serverRelativeUrl +
               `/_api/Web/Lists/getByTitle('${listName}')/Items?$select=Id,Title`,
             SPHttpClient.configurations.v1,
             httpClientOptions
@@ -42,8 +46,8 @@ export class PollService implements IPollService {
               const voteOptions: IVoteOption[] = [];
               for (let i: number = 0; i < voteOptionItems.value.length; i++) {
                 voteOptions.push({
-                  id: voteOptionItems[i].Id,
-                  label: voteOptionItems[i].Title,
+                  id: voteOptionItems.value[i].Id,
+                  label: voteOptionItems.value[i].Title,
                 });
               }
               resolve(voteOptions);
@@ -130,9 +134,9 @@ export class PollService implements IPollService {
         resolve: (results: IVoteResult[]) => void,
         reject: (error: unknown) => void
       ): void => {
-        this.context.spHttpClient
+        this._context.spHttpClient
           .get(
-            this.context.pageContext.web.serverRelativeUrl +
+            this._context.pageContext.web.serverRelativeUrl +
               `/_api/Web/Lists/getByTitle('${listName}')/Items?$select=Id,Title,NumVotes`,
             SPHttpClient.configurations.v1,
             this._getHttpClientOptions(true)
@@ -184,9 +188,9 @@ export class PollService implements IPollService {
         resolve: (listEntityTypeName: string) => void,
         reject: (error: unknown) => void
       ): void => {
-        this.context.spHttpClient
+        this._context.spHttpClient
           .post(
-            this.context.pageContext.web.serverRelativeUrl +
+            this._context.pageContext.web.serverRelativeUrl +
               `/_api/Web/Lists/getByTitle('${listName}')?$select=ListItemEntityTypeFullName`,
             SPHttpClient.configurations.v1,
             this._getHttpClientOptions(true)
