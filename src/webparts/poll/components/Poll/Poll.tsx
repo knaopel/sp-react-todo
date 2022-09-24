@@ -1,10 +1,9 @@
 import * as React from 'react';
-// import styles from './Poll.module.scss';
 import { IPollProps } from './IPollProps';
-// import { escape } from '@microsoft/sp-lodash-subset';
 import { IPollState } from './IPollState';
-import { PrimaryButton } from 'office-ui-fabric-react';
+import { PrimaryButton } from '@microsoft/office-ui-fabric-react-bundle';
 import { Vote } from '../Vote';
+import { Results } from '../Results';
 
 export class Poll extends React.Component<IPollProps, IPollState> {
   public constructor(props: IPollProps) {
@@ -28,19 +27,9 @@ export class Poll extends React.Component<IPollProps, IPollState> {
     };
   }
 
-  // protected componentWillReceiveProps(
-  //   nextProps: Readonly<IPollProps>,
-  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   nextContext: any
-  // ): void {
-  //   this.setState({
-  //     showResults: true,
-  //   });
-  // }
-
   public render(): JSX.Element {
     const { description, title } = this.props;
-    const showResults: boolean = this.state.showResults;
+    const { showResults } = this.state;
 
     return (
       <div>
@@ -60,7 +49,7 @@ export class Poll extends React.Component<IPollProps, IPollState> {
         )}
         {showResults && (
           <div>
-            <div>Results Component here</div>
+            <Results {...this.props} />
             <PrimaryButton
               data-automation-id='toVote'
               onClick={this._voteNow}

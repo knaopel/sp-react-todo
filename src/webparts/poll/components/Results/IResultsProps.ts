@@ -1,6 +1,5 @@
 import { IPollService } from '../../services';
 
-export interface IVoteProps {
-  onVoted: () => void;
+export interface IResultsProps {
   pollService: IPollService;
 }

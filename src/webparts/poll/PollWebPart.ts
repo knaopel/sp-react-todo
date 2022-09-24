@@ -5,41 +5,48 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField,
 } from '@microsoft/sp-property-pane';
-import {   Environment,   EnvironmentType,   Version, } from '@microsoft/sp-core-library';
+import {
+  Environment,
+  EnvironmentType,
+  Version,
+} from '@microsoft/sp-core-library';
 
 import * as strings from 'PollStrings';
 import { IPollWebPartProps } from './IPollWebPartProps';
 import { IMainProps, Main } from './components/Main';
 import { IPollService, MockPollService, PollService } from './services';
+import { getSP } from '../../services/pnpJsConfig';
 
 export default class PollWebPart extends BaseClientSideWebPart<IPollWebPartProps> {
   private _pollService: IPollService;
 
-  protected onInit(): Promise<void> {
+  protected async onInit(): Promise<void> {
     this._configureWebPart = this._configureWebPart.bind(this);
 
     if (DEBUG && Environment.type === EnvironmentType.Local) {
       this._pollService = new MockPollService();
     } else {
-      this._pollService = new PollService(this.context);
+      this._pollService = new PollService(
+        this.context,
+        this.properties.listName
+      );
     }
 
-    return super.onInit();
+    await super.onInit();
+
+    getSP(this.context);
   }
 
   public render(): void {
-    const element: React.ReactElement<IMainProps> = React.createElement(
-      Main,
-      {
-        listName: this.properties.listName,
-        pollTitle: this.properties.pollTitle,
-        pollDescription: this.properties.pollDescription,
-        needsConfiguration: this._needsConfiguration(),
-        displayMode: this.displayMode,
-        configureWebPart: this._configureWebPart,
-        pollService: this._pollService
-      }
-    );
+    const element: React.ReactElement<IMainProps> = React.createElement(Main, {
+      listName: this.properties.listName,
+      pollTitle: this.properties.pollTitle,
+      pollDescription: this.properties.pollDescription,
+      needsConfiguration: this._needsConfiguration(),
+      displayMode: this.displayMode,
+      configureWebPart: this._configureWebPart,
+      pollService: this._pollService,
+    });
 
     ReactDom.render(element, this.domElement);
   }
@@ -86,22 +93,22 @@ export default class PollWebPart extends BaseClientSideWebPart<IPollWebPartProps
               groupFields: [
                 PropertyPaneTextField('pollTitle', {
                   label: strings.PollTitleFieldLabel,
-                  onGetErrorMessage: this.validatePollTitle
+                  onGetErrorMessage: this.validatePollTitle,
                 }),
-                PropertyPaneTextField('pollDescription',{
-                  label: strings.PollDescriptionFieldLabel
-                })
+                PropertyPaneTextField('pollDescription', {
+                  label: strings.PollDescriptionFieldLabel,
+                }),
               ],
             },
             {
               groupName: strings.DataGroupName,
-              groupFields:[
-                PropertyPaneTextField('listName',{
-                  label:strings.ListNameFieldLabel,
-                  onGetErrorMessage: this.validateListName
-                })
-              ]
-            }
+              groupFields: [
+                PropertyPaneTextField('listName', {
+                  label: strings.ListNameFieldLabel,
+                  onGetErrorMessage: this.validateListName,
+                }),
+              ],
+            },
           ],
         },
       ],
@@ -109,31 +116,33 @@ export default class PollWebPart extends BaseClientSideWebPart<IPollWebPartProps
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  private validatePollTitle(pollTitle: string):string {
-    if(pollTitle.trim().length ===0){
+  private validatePollTitle(pollTitle: string): string {
+    if (pollTitle.trim().length === 0) {
       return 'Please enter a title for this poll';
-    }else{
+    } else {
       return '';
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  private validateListName(pollTitle: string):string {
-    if(pollTitle.trim().length ===0){
+  private validateListName(pollTitle: string): string {
+    if (pollTitle.trim().length === 0) {
       return 'Please enter the name of the list.';
-    }else{
+    } else {
       return '';
     }
   }
 
-  private _needsConfiguration():boolean{
-    return this.properties.listName === null ||
-    this.properties.listName.trim().length ===0 ||
-    this.properties.pollTitle === null ||
-    this.properties.pollTitle.trim().length ===0;
+  private _needsConfiguration(): boolean {
+    return (
+      this.properties.listName === null ||
+      this.properties.listName.trim().length === 0 ||
+      this.properties.pollTitle === null ||
+      this.properties.pollTitle.trim().length === 0
+    );
   }
 
-  private _configureWebPart():void {
+  private _configureWebPart(): void {
     this.context.propertyPane.open();
   }
 }
