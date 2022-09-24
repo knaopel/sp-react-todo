@@ -1,43 +1,76 @@
 import * as React from 'react';
-import styles from './ReactTodo2.module.scss';
-import { IReactTodo2Props } from './IReactTodo2Props';
-import { escape } from '@microsoft/sp-lodash-subset';
+import { IPollProps } from './IPollProps';
+import { IPollState } from './IPollState';
+import { PrimaryButton } from '@microsoft/office-ui-fabric-react-bundle';
+import { Vote } from '../Vote';
+import { Results } from '../Results';
 
-export default class ReactTodo2 extends React.Component<IReactTodo2Props, {}> {
-  public render(): React.ReactElement<IReactTodo2Props> {
-    const {
-      description,
-      isDarkTheme,
-      environmentMessage,
-      hasTeamsContext,
-      userDisplayName
-    } = this.props;
+export class Poll extends React.Component<IPollProps, IPollState> {
+  public constructor(props: IPollProps) {
+    super(props);
+
+    this.state = {
+      showResults: true,
+    };
+
+    this._voted = this._voted.bind(this);
+    this._voteNow = this._voteNow.bind(this);
+  }
+
+  public static getDerivedStateFromProps(
+    props: IPollProps,
+    state: IPollState
+  ): IPollState {
+    const { showResults } = state;
+    return {
+      showResults,
+    };
+  }
+
+  public render(): JSX.Element {
+    const { description, title } = this.props;
+    const { showResults } = this.state;
 
     return (
-      <section className={`${styles.reactTodo2} ${hasTeamsContext ? styles.teams : ''}`}>
-        <div className={styles.welcome}>
-          <img alt="" src={isDarkTheme ? require('../assets/welcome-dark.png') : require('../assets/welcome-light.png')} className={styles.welcomeImage} />
-          <h2>Well done, {escape(userDisplayName)}!</h2>
-          <div>{environmentMessage}</div>
-          <div>Web part property value: <strong>{escape(description)}</strong></div>
-        </div>
-        <div>
-          <h3>Welcome to SharePoint Framework!</h3>
-          <p>
-            The SharePoint Framework (SPFx) is a extensibility model for Microsoft Viva, Microsoft Teams and SharePoint. It&#39;s the easiest way to extend Microsoft 365 with automatic Single Sign On, automatic hosting and industry standard tooling.
-          </p>
-          <h4>Learn more about SPFx development:</h4>
-          <ul className={styles.links}>
-            <li><a href="https://aka.ms/spfx" target="_blank" rel="noreferrer">SharePoint Framework Overview</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-graph" target="_blank" rel="noreferrer">Use Microsoft Graph in your solution</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-teams" target="_blank" rel="noreferrer">Build for Microsoft Teams using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-viva" target="_blank" rel="noreferrer">Build for Microsoft Viva Connections using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-store" target="_blank" rel="noreferrer">Publish SharePoint Framework applications to the marketplace</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-api" target="_blank" rel="noreferrer">SharePoint Framework API reference</a></li>
-            <li><a href="https://aka.ms/m365pnp" target="_blank" rel="noreferrer">Microsoft 365 Developer Community</a></li>
-          </ul>
-        </div>
-      </section>
+      <div>
+        <div className='ms-font-xl'>{title}</div>
+        <div className='ms-font-m-plus'>{description}</div>
+        <br />
+        {showResults === false && (
+          <div>
+            <Vote onVoted={this._voted} {...this.props} />
+            <PrimaryButton
+              data-automation-id='toResults'
+              onClick={this._voted}
+              disabled={false}
+              text='View Results'
+            />
+          </div>
+        )}
+        {showResults && (
+          <div>
+            <Results {...this.props} />
+            <PrimaryButton
+              data-automation-id='toVote'
+              onClick={this._voteNow}
+              disabled={false}
+              text='Vote Now'
+            />
+          </div>
+        )}
+      </div>
     );
+  }
+
+  private _voted(): void {
+    this.setState({
+      showResults: true,
+    });
+  }
+
+  private _voteNow(): void {
+    this.setState({
+      showResults: false,
+    });
   }
 }

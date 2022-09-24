@@ -1,7 +1,8 @@
-export interface IReactTodo2Props {
+import { IPollService } from '../../services';
+
+export interface IPollProps {
+  title: string;
   description: string;
-  isDarkTheme: boolean;
-  environmentMessage: string;
-  hasTeamsContext: boolean;
-  userDisplayName: string;
+  listName: string;
+  pollService: IPollService;
 }

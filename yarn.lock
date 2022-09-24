@@ -839,17 +839,17 @@
     source-map "~0.6.1"
     typescript "~4.2.4"
 
-"@microsoft/eslint-config-spfx@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/eslint-config-spfx/-/eslint-config-spfx-1.15.0.tgz"
-  integrity sha512-B1n4RYeDef/9aEdTsHx0wefSL6jR9kJ+l1AalHLvVbNaK8teIHLjHxJBrypzr+DmNk3qZEaml0nmFNx3bBcCbw==
+"@microsoft/eslint-config-spfx@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/eslint-config-spfx/-/eslint-config-spfx-1.15.2.tgz#75ac1b59c7b03e4264f42ae88b7c8cd2cd26b4d0"
+  integrity sha512-GMF1HMzyxI6QR5ncwLElcQoOe9jLRA97ZoSIV3JbELOqCjUGNYyZw7a+kl3TwP622Vj3CYAVXWQWhLC2Te/NTg==
   dependencies:
     "@typescript-eslint/experimental-utils" "5.20.0"
 
-"@microsoft/eslint-plugin-spfx@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/eslint-plugin-spfx/-/eslint-plugin-spfx-1.15.0.tgz"
-  integrity sha512-mHkeye1VYipcsmWEn+jKRH0mJMBElb3NT8yYd1lFO/HBFN6zArl/RiMd+2geB8vQxvBtvgMdATbGLINMd4ggKQ==
+"@microsoft/eslint-plugin-spfx@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/eslint-plugin-spfx/-/eslint-plugin-spfx-1.15.2.tgz#51b199c7cf4048c13532c93a91c1f95b1acf0de8"
+  integrity sha512-4OObWB0H0SUOD7X5sIliAs1LrTeXsRwxXN2kbiR7puORl8b27iPkWA1ljVUAbw15qNlBRJTFF4aQtTSowDxVUA==
   dependencies:
     "@typescript-eslint/experimental-utils" "5.20.0"
 
@@ -974,13 +974,14 @@
     "@microsoft/load-themed-styles" "1.10.266"
     loader-utils "~1.1.0"
 
-"@microsoft/microsoft-graph-client@~1.1.0":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@microsoft/microsoft-graph-client/-/microsoft-graph-client-1.1.0.tgz"
-  integrity sha512-sDgchKZz1l3QJVNdkE1P1KpwTjupNt1mS9h1T0CiP+ayMN7IeFKfElB8IYtxFplNalZTmEq+iqoQFqUVpVMLfQ==
+"@microsoft/microsoft-graph-client@1.7.2-spfx":
+  version "1.7.2-spfx"
+  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-client/-/microsoft-graph-client-1.7.2-spfx.tgz#9476b594ccbb182e1883d2c63e80ea9f7fc3baac"
+  integrity sha512-BQN50r3tohWYOaQ0de7LJ5eCRjI6eg4RQqLhGDlgRmZIZhWzH0bhR6QBMmmxtYtwKWifhPhJSxYDW+cP67TJVw==
   dependencies:
-    es6-promise "^4.1.0"
-    isomorphic-fetch "^2.2.1"
+    es6-promise "^4.2.6"
+    isomorphic-fetch "^3.0.0"
+    tslib "^1.9.3"
 
 "@microsoft/microsoft-graph-clientV3@npm:@microsoft/microsoft-graph-client@3.0.2":
   version "3.0.2"
@@ -990,12 +991,12 @@
     "@babel/runtime" "^7.12.5"
     tslib "^2.2.0"
 
-"@microsoft/office-ui-fabric-react-bundle@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/office-ui-fabric-react-bundle/-/office-ui-fabric-react-bundle-1.15.0.tgz"
-  integrity sha512-EA9eBe5Al6iAhs05W2ob92iGesNs3AbMVSe4A88W6+P9/Im5Z1MBXBtShnAkmVOjAyN4u/C7K1k71ngY4Y6vmw==
+"@microsoft/office-ui-fabric-react-bundle@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/office-ui-fabric-react-bundle/-/office-ui-fabric-react-bundle-1.15.2.tgz#7e8158cf370d6602089b6c64344381010af70cd7"
+  integrity sha512-iYQvIIRkjvwkoD9RHa3LUqbago9wSL0YUiifbQib7sG4fzl38Hmrht+WA0DPRPZbSwOWCsjzv7FXt1YWy9QxFQ==
   dependencies:
-    "@microsoft/sp-core-library" "1.15.0"
+    "@microsoft/sp-core-library" "1.15.2"
     "@uifabric/icons" "7.7.2"
     office-ui-fabric-react "7.185.7"
     react "16.13.1"
@@ -1056,15 +1057,15 @@
     import-lazy "~4.0.0"
     typescript "~4.5.5"
 
-"@microsoft/sp-build-core-tasks@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-build-core-tasks/-/sp-build-core-tasks-1.15.0.tgz"
-  integrity sha512-Z8qEOdckHlcUDzmO8vMmmkE1PiDR+ESaq0Iy+5bRIcThfejbMFXyC5ofybFB8/mFnlCFCSHTnoPeAlcuSm5PVQ==
+"@microsoft/sp-build-core-tasks@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-build-core-tasks/-/sp-build-core-tasks-1.15.2.tgz#474cc03bd697d8a8b8e6211ea4a3b5cbcc12270d"
+  integrity sha512-yVpPKGKlMcsDbO9bjVYEf2PZEcVHC8eAx49qYXi4jGbAIOqZC6hjxJKQYLXT/Gh02wA67GFmwr55C7KOO1wMUg==
   dependencies:
     "@microsoft/gulp-core-build" "3.17.19"
     "@microsoft/gulp-core-build-serve" "3.9.21"
     "@microsoft/gulp-core-build-webpack" "5.2.27"
-    "@microsoft/spfx-heft-plugins" "1.15.0"
+    "@microsoft/spfx-heft-plugins" "1.15.2"
     "@rushstack/node-core-library" "3.45.5"
     "@types/glob" "5.0.30"
     "@types/lodash" "4.14.117"
@@ -1075,10 +1076,10 @@
     lodash "4.17.21"
     webpack "~4.44.2"
 
-"@microsoft/sp-build-web@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-build-web/-/sp-build-web-1.15.0.tgz"
-  integrity sha512-E6B0oxiN7VW+LCc4g4g5H1wIAKYboo80sutEx/kKyFB34xkhqnbd8PkWsFxLOi0QbKXLvj8VC+gUEJDReYuKqA==
+"@microsoft/sp-build-web@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-build-web/-/sp-build-web-1.15.2.tgz#bef19c3888073b3194db7e190b04f6763a7b66eb"
+  integrity sha512-lS67sxWuqkbTEjPhJHYurARxMQCNc8j0zw5WdnvKG8bt1DrcHe8NLtpfK9pDcPYe7S5YfgI36AOiEvICxjRkqg==
   dependencies:
     "@microsoft/gulp-core-build" "3.17.19"
     "@microsoft/gulp-core-build-sass" "4.15.5"
@@ -1086,7 +1087,7 @@
     "@microsoft/gulp-core-build-typescript" "8.5.32"
     "@microsoft/gulp-core-build-webpack" "5.2.27"
     "@microsoft/rush-lib" "5.70.0"
-    "@microsoft/sp-build-core-tasks" "1.15.0"
+    "@microsoft/sp-build-core-tasks" "1.15.2"
     "@rushstack/node-core-library" "3.45.5"
     "@types/webpack" "4.41.24"
     gulp "4.0.2"
@@ -1095,35 +1096,35 @@
     webpack "~4.44.2"
     yargs "~4.6.0"
 
-"@microsoft/sp-component-base@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-component-base/-/sp-component-base-1.15.0.tgz"
-  integrity sha512-TF64kGGUDtU7AB0m78A5MGQJY+guWohAuZOsFBcmC+wZNKa68DDHsN05gGUCrDdE6weVLQYrCL+gSHgwQfqlKA==
+"@microsoft/sp-component-base@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-component-base/-/sp-component-base-1.15.2.tgz#da480044b92b882f8f8b90a35c0ce08a70ab4268"
+  integrity sha512-Uf7nZ6Ohf68FQ4ABDs+8GVyqAb87rybaTJh/xBYz7DAjUUk/G1urq9wqTih8hSaHGog4P7ovuVeBKNYpmOU3Tg==
   dependencies:
-    "@microsoft/office-ui-fabric-react-bundle" "1.15.0"
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-dynamic-data" "1.15.0"
-    "@microsoft/sp-http" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-module-interfaces" "1.15.0"
-    "@microsoft/sp-page-context" "1.15.0"
+    "@microsoft/office-ui-fabric-react-bundle" "1.15.2"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-dynamic-data" "1.15.2"
+    "@microsoft/sp-http" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-module-interfaces" "1.15.2"
+    "@microsoft/sp-page-context" "1.15.2"
     tslib "2.3.1"
 
-"@microsoft/sp-core-library@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-core-library/-/sp-core-library-1.15.0.tgz"
-  integrity sha512-35gQme8hnXkEEGy/A3UzlyoR/uuOP1b6EZa2mAR6a+EbMJ+kYuiU40eOGkOmvjr3NyvSc0/+c/IRTRZjEmS3pw==
+"@microsoft/sp-core-library@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-core-library/-/sp-core-library-1.15.2.tgz#f0906af499e1fb0108c3b3af20ad7d91f74931c4"
+  integrity sha512-sEotaC8+jUMZa5wc3lvtDYOGpAzzcl1fSZ0FnANIrJGyBC6tTqred0fzpkXptd4R0G/wi3746ivrccAOkzONkQ==
   dependencies:
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-module-interfaces" "1.15.0"
-    "@microsoft/sp-odata-types" "1.15.0"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-module-interfaces" "1.15.2"
+    "@microsoft/sp-odata-types" "1.15.2"
     tslib "2.3.1"
 
-"@microsoft/sp-css-loader@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-css-loader/-/sp-css-loader-1.15.0.tgz"
-  integrity sha512-MDSTtzWtBejC+GL3GZSW55C0MS0i0ttIE4Ot5Fhoy76+Uf+bsFbzSDy8NgpkrvCUL+IU4xPYv0pFrDCRAfepGw==
+"@microsoft/sp-css-loader@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-css-loader/-/sp-css-loader-1.15.2.tgz#1b9a60439dbec73f476c343c815b096d198fa2bc"
+  integrity sha512-3SjLphivW4kYg/Jl4exVStrBNuEjl0ol69zdJCjkRLT+wZvAstc5Y4RVljMDAap1BgTh14zJ3jT6nztbExlMGA==
   dependencies:
     "@microsoft/load-themed-styles" "1.10.266"
     "@rushstack/node-core-library" "3.45.5"
@@ -1138,70 +1139,70 @@
     postcss-modules-values "~4.0.0"
     webpack "~4.44.2"
 
-"@microsoft/sp-diagnostics@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-diagnostics/-/sp-diagnostics-1.15.0.tgz"
-  integrity sha512-sjeY9pp/p28tk2chhG/Fz6XsMEvlamI+fW8V8EoEvZXXIak1r+tO4y1cMTeNhvBYAKIyyPmkdON5zOxwF0CFWg==
+"@microsoft/sp-diagnostics@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-diagnostics/-/sp-diagnostics-1.15.2.tgz#615fb1a70e305913eeb3b20f60b9acc0577ff8aa"
+  integrity sha512-9OJQwkdy3kqATQISpI4SG+5OUMB90KesupsWIE31aAyPcQiilh0XGhWmaYnCxCgGATAWcaYrFeptlDOTQNpuiA==
   dependencies:
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
 
-"@microsoft/sp-dynamic-data@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-dynamic-data/-/sp-dynamic-data-1.15.0.tgz"
-  integrity sha512-DvlHl17cWPQOCq6ihvA+ySNVVYB1vjZzpRC5+OMHa2b3UJWpuRFJzFEQI5w139wvHc92LT9LPQYmavYo4QNV+Q==
+"@microsoft/sp-dynamic-data@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-dynamic-data/-/sp-dynamic-data-1.15.2.tgz#f1daf43da7dda1ebd50e648e280ee945552c09b8"
+  integrity sha512-6ks5GUBSatsijQC8NUjaLjYCv4efAbEJcbSVTj8lySpTVCWu8aKsFtKB1b/Vc3I1g9Adq6z2e9sgTaPwm6HTlA==
   dependencies:
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-module-interfaces" "1.15.0"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-module-interfaces" "1.15.2"
     tslib "2.3.1"
 
-"@microsoft/sp-http@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-http/-/sp-http-1.15.0.tgz"
-  integrity sha512-1G8KJogNBp/FoYi1nsFGMrGgYyth27pktWCpQ+xYAUHYqT18330bEMMgUrdu5T2ArnynAri+W5nTSpsslm/Ueg==
+"@microsoft/sp-http@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-http/-/sp-http-1.15.2.tgz#c7529bbc4c69f80ffa8b6c6596a5180233da588b"
+  integrity sha512-vP3heQlje3YVTgyaGKZmrHksqmWP+zczuhQP116cCl6z52ZdUiuJIZpDcu+WGZaG1HdznAyrNGkkiZauTytIHw==
   dependencies:
     "@azure/msal-browser" "2.22.0"
-    "@microsoft/microsoft-graph-client" "~1.1.0"
+    "@microsoft/microsoft-graph-client" "1.7.2-spfx"
     "@microsoft/microsoft-graph-clientV3" "npm:@microsoft/microsoft-graph-client@3.0.2"
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-page-context" "1.15.0"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-page-context" "1.15.2"
     "@types/adal-angular" "1.0.1"
     adal-angular "1.0.16"
     msalLegacy "npm:msal@1.4.12"
     tslib "2.3.1"
 
-"@microsoft/sp-image-helper@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-image-helper/-/sp-image-helper-1.15.0.tgz"
-  integrity sha512-wktIBskDBaosyd7/jhjfUycbTVY7CyIjynR0DEnaYMzEnBPhIp+DySeHrA5Uz7LaMIkBbC2lEgfCQNyPyzoOKQ==
+"@microsoft/sp-image-helper@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-image-helper/-/sp-image-helper-1.15.2.tgz#150f5d5388f4234f5ed92cc401419f4998dfe9db"
+  integrity sha512-vNwymXZtGLFdgkNaV0j/Oi5t8Pz2FV9LgS2gnbAKuRzLSXtCSZ9hfP+5eC5LrVBWkSzxHC+8e+gAGaxqbr2asA==
   dependencies:
-    "@microsoft/office-ui-fabric-react-bundle" "1.15.0"
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-http" "1.15.0"
-    "@microsoft/sp-loader" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-page-context" "1.15.0"
+    "@microsoft/office-ui-fabric-react-bundle" "1.15.2"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-http" "1.15.2"
+    "@microsoft/sp-loader" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-page-context" "1.15.2"
     tslib "2.3.1"
 
-"@microsoft/sp-loader@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-loader/-/sp-loader-1.15.0.tgz"
-  integrity sha512-r7DEx5v1LTzCimTykJf2tCWDCK+BBhcZqglsV6dCZrHHgAM3uQm1jIYXrI3Nekwg904rxKlTozRQcyON2baSxg==
+"@microsoft/sp-loader@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-loader/-/sp-loader-1.15.2.tgz#13769e0f685af37306bbbba939c42d4db30c5612"
+  integrity sha512-w1EbIrP7AXH5Oq0cQwKW5OZUK6+c3amiImGUBSAlyHaEyC5/gSKMCDM0XJ0xkrihWs0ICWj/yX2o0aLaaReO3g==
   dependencies:
-    "@microsoft/office-ui-fabric-react-bundle" "1.15.0"
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-dynamic-data" "1.15.0"
-    "@microsoft/sp-http" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-module-interfaces" "1.15.0"
-    "@microsoft/sp-odata-types" "1.15.0"
-    "@microsoft/sp-page-context" "1.15.0"
-    "@microsoft/sp-polyfills" "1.15.0"
+    "@microsoft/office-ui-fabric-react-bundle" "1.15.2"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-dynamic-data" "1.15.2"
+    "@microsoft/sp-http" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-module-interfaces" "1.15.2"
+    "@microsoft/sp-odata-types" "1.15.2"
+    "@microsoft/sp-page-context" "1.15.2"
+    "@microsoft/sp-polyfills" "1.15.2"
     "@rushstack/loader-raw-script" "1.3.228"
     "@types/requirejs" "2.1.29"
     office-ui-fabric-react "7.185.7"
@@ -1211,53 +1212,53 @@
     requirejs "2.3.6"
     tslib "2.3.1"
 
-"@microsoft/sp-lodash-subset@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-lodash-subset/-/sp-lodash-subset-1.15.0.tgz"
-  integrity sha512-9j4U2i5oo4vaTinhtRJGaiBNraDxFd0XF/eui1yXjs4tzUqMOmBY8EVynrEngJQcqEfYU7Dd6yxSfa1qwnBoew==
+"@microsoft/sp-lodash-subset@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-lodash-subset/-/sp-lodash-subset-1.15.2.tgz#afbff7319d86574a9258a063ec6c27f2f4a5e1ba"
+  integrity sha512-XLqSltvz9W0hft76fylqVFNUIVS1sLjdUF3+lIQyj0g+4R9kDy9VsGhpxX7qLGAdW10yZ6Z40qfmBWgn8NN4MA==
   dependencies:
     "@types/lodash" "4.14.117"
     tslib "2.3.1"
 
-"@microsoft/sp-module-interfaces@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-module-interfaces/-/sp-module-interfaces-1.15.0.tgz"
-  integrity sha512-C69HqPaKjH1/RpgGkHZNKb1ynPVcOYsqmFlelAk23Tfc+o9hw/WxXvsMHoOYzPR1Mdu7h4fcBPEqId1AKTFUrQ==
+"@microsoft/sp-module-interfaces@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-module-interfaces/-/sp-module-interfaces-1.15.2.tgz#54ffc22401215c08ac61dcb8700347202fa391ef"
+  integrity sha512-JGOjK8f5ww+r4ax8TBAPDyZhDhGWVg1Jk4PvKE0cU6qjywM0DzWWkzHJFcyFXdjr8UE/+wzJOKasCCtu1RjWQg==
   dependencies:
     "@rushstack/node-core-library" "3.45.5"
     z-schema "4.2.4"
 
-"@microsoft/sp-odata-types@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-odata-types/-/sp-odata-types-1.15.0.tgz"
-  integrity sha512-U++bxURPHhSTFM6Wtjbtb8IaKO9DHt33/sAx1HSBtwmc2LmxIzI4zUbEzo0M0TUFStumOnGMJvSFJoQP08UrKw==
+"@microsoft/sp-odata-types@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-odata-types/-/sp-odata-types-1.15.2.tgz#9be3152af4e3f99256ae07369b71894bda4ed300"
+  integrity sha512-Eb5MAWRAOkRAGXSdacg8p/KdSpYDJBNwyqNCZwrsCbgf/66h28oK0KUqQ6o8Hcy+vAZpa16x6bvpJQw5u1u8ZA==
   dependencies:
     tslib "2.3.1"
 
-"@microsoft/sp-office-ui-fabric-core@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-office-ui-fabric-core/-/sp-office-ui-fabric-core-1.15.0.tgz"
-  integrity sha512-l8bbc6yV9BcdMiZdsL1+ceI9k5jdevexxAWhDIcPH9k/24fTCJPf5/FIoheF6PwVuMmU2i29yktCQLgkm80BQQ==
+"@microsoft/sp-office-ui-fabric-core@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-office-ui-fabric-core/-/sp-office-ui-fabric-core-1.15.2.tgz#b6011ee9d5fed67601c1d410b4fcb4893aeb45c7"
+  integrity sha512-/AO94rEE8NJqyVRiKkTzmdVbwqht8fVULvsikpJUTGd4Cczp8nUs9YsTwGxbdlW9Mu3gQ7CM9Rq7J24pNmEJWA==
   dependencies:
     office-ui-fabric-core "11.0.1"
     tslib "2.3.1"
 
-"@microsoft/sp-page-context@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-page-context/-/sp-page-context-1.15.0.tgz"
-  integrity sha512-V36CAateV9tgM3Q1tJm+8R6dxCk7G+fk4Q9pUz/PrRaVJQu8cXX+Fk0Peug0EV6bZXCBwkCr51vg8NGqqFp9/w==
+"@microsoft/sp-page-context@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-page-context/-/sp-page-context-1.15.2.tgz#5e148d29b579f3aeeb86fc080bce829fc061c8af"
+  integrity sha512-gq7q2vq5rzAwkOn4/jpdL/VgHCrtDWNZqjcU62W6iIW4TNT3nVykcof9llpghPcYx5dOuTtrRizXfa+vtQ+rzw==
   dependencies:
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-dynamic-data" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-odata-types" "1.15.0"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-dynamic-data" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-odata-types" "1.15.2"
     tslib "2.3.1"
 
-"@microsoft/sp-polyfills@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-polyfills/-/sp-polyfills-1.15.0.tgz"
-  integrity sha512-0s7q4w9hqBm4xGd7btBkk1lIlUXAlJdQpuo/18iMBJ5UWZKuQu753KHd3KV6Xa5e0/2E4skRqn9DaG4y9br2hw==
+"@microsoft/sp-polyfills@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-polyfills/-/sp-polyfills-1.15.2.tgz#edaadde6ee19b5f339b2cc85c0305bb31b3c218b"
+  integrity sha512-XxbM/3p6yW/OIahcmzOVFQArKRxySHuDLSveSEdjIY3ycG8UWNX4QXDEd1tZchWCDz3vfO+j4aUsPPSOVW1Wcw==
   dependencies:
     es6-promise "4.2.4"
     es6-symbol "3.1.3"
@@ -1265,39 +1266,39 @@
     whatwg-fetch "2.0.3"
     whatwg-url "4.7.1"
 
-"@microsoft/sp-property-pane@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-property-pane/-/sp-property-pane-1.15.0.tgz"
-  integrity sha512-dRGUGbcvPefnEJODhucgLmevCNwSbJiTom1aByn69I9bfkg+TUfpsTKCPWqQejPD4zGO/cf5fuhzdmfH4T6DlQ==
+"@microsoft/sp-property-pane@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-property-pane/-/sp-property-pane-1.15.2.tgz#a40bc9495e80c05dee0abf847262f7e8719aeae8"
+  integrity sha512-V78aUGZa4gM/MMmOg14iWYPoknHe9jrormvTXpltjcIvipRm5H5bRr6D4SfuzJ7uu0roJ53zfGddCDdvn05ezA==
   dependencies:
-    "@microsoft/office-ui-fabric-react-bundle" "1.15.0"
-    "@microsoft/sp-component-base" "1.15.0"
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-dynamic-data" "1.15.0"
-    "@microsoft/sp-image-helper" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-page-context" "1.15.0"
+    "@microsoft/office-ui-fabric-react-bundle" "1.15.2"
+    "@microsoft/sp-component-base" "1.15.2"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-dynamic-data" "1.15.2"
+    "@microsoft/sp-image-helper" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-page-context" "1.15.2"
     office-ui-fabric-react "7.185.7"
     react "16.13.1"
     react-dom "16.13.1"
     tslib "2.3.1"
 
-"@microsoft/sp-webpart-base@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/sp-webpart-base/-/sp-webpart-base-1.15.0.tgz"
-  integrity sha512-8oqJwxvzWQdaoGs0VTJnGwLuAw+EgbxPVVNHGGYtWpmtXi/RCk/aDc8YmyZdJrzr+oi1wK/TTVg5TQXUHa3G5Q==
+"@microsoft/sp-webpart-base@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/sp-webpart-base/-/sp-webpart-base-1.15.2.tgz#9dee53912f014db9b9c377dd4fed8752c88bfa48"
+  integrity sha512-dFQBwmRg81EDyV5RzA7JEhtdKyjk3vjKZBn3pWvaY/4Yo+oGyzKdQ8o/z2A9OO6KwXXlXkFiGJgoau57c/EALQ==
   dependencies:
-    "@microsoft/sp-component-base" "1.15.0"
-    "@microsoft/sp-core-library" "1.15.0"
-    "@microsoft/sp-diagnostics" "1.15.0"
-    "@microsoft/sp-dynamic-data" "1.15.0"
-    "@microsoft/sp-http" "1.15.0"
-    "@microsoft/sp-loader" "1.15.0"
-    "@microsoft/sp-lodash-subset" "1.15.0"
-    "@microsoft/sp-module-interfaces" "1.15.0"
-    "@microsoft/sp-page-context" "1.15.0"
-    "@microsoft/sp-property-pane" "1.15.0"
+    "@microsoft/sp-component-base" "1.15.2"
+    "@microsoft/sp-core-library" "1.15.2"
+    "@microsoft/sp-diagnostics" "1.15.2"
+    "@microsoft/sp-dynamic-data" "1.15.2"
+    "@microsoft/sp-http" "1.15.2"
+    "@microsoft/sp-loader" "1.15.2"
+    "@microsoft/sp-lodash-subset" "1.15.2"
+    "@microsoft/sp-module-interfaces" "1.15.2"
+    "@microsoft/sp-page-context" "1.15.2"
+    "@microsoft/sp-property-pane" "1.15.2"
     "@microsoft/teams-js" "1.12.1"
     "@types/office-js" "1.0.36"
     office-ui-fabric-react "7.185.7"
@@ -1305,16 +1306,16 @@
     react-dom "16.13.1"
     tslib "2.3.1"
 
-"@microsoft/spfx-heft-plugins@1.15.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@microsoft/spfx-heft-plugins/-/spfx-heft-plugins-1.15.0.tgz"
-  integrity sha512-EiYVInJ3KBq2I8cbT9duUa6KZeB/oa1S7704CEqtTLhwL6jkayrtR+HZX50ztjbBzsKNoI7mYUjVHWY90dGqVg==
+"@microsoft/spfx-heft-plugins@1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/spfx-heft-plugins/-/spfx-heft-plugins-1.15.2.tgz#a5ef2f6411e487842bf9390ae03f9b82bf4d704b"
+  integrity sha512-92MAbCba3luuofv5se1p6SOnvuSTVmHJDozu/FljR6s3OIFrDOYjEZXSD3DgK0rf1oTijJbH3jXI5Pq6VqmimQ==
   dependencies:
     "@azure/storage-blob" "~12.4.1"
     "@microsoft/loader-load-themed-styles" "1.9.147"
     "@microsoft/rush-lib" "5.70.0"
-    "@microsoft/sp-css-loader" "1.15.0"
-    "@microsoft/sp-module-interfaces" "1.15.0"
+    "@microsoft/sp-css-loader" "1.15.2"
+    "@microsoft/sp-module-interfaces" "1.15.2"
     "@rushstack/heft-config-file" "0.8.4"
     "@rushstack/localization-plugin" "0.11.0"
     "@rushstack/module-minifier-plugin" "0.9.0"
@@ -1448,6 +1449,37 @@
   version "0.2.0"
   resolved "https://registry.npmjs.org/@opentelemetry/types/-/types-0.2.0.tgz"
   integrity sha512-GtwNB6BNDdsIPAYEdpp3JnOGO/3AJxjPvny53s3HERBdXSJTGQw8IRhiaTEX0b3w9P8+FwFZde4k+qkjn67aVw==
+
+"@pnp/core@3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@pnp/core/-/core-3.7.0.tgz#59efaaea26d89334025638a79b44f47b79a6275b"
+  integrity sha512-ULDdU0dxW4tKjkENjs/Y0Mo5nThgJ3KH17WU7kfS0koTkkXN474d3XpRe5CGEkyqA9wJLo2F/PfB4cMa94RJbg==
+  dependencies:
+    tslib "2.4.0"
+
+"@pnp/logging@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@pnp/logging/-/logging-3.7.0.tgz#cb0eedcaa5a6b4f1b4a84f15fa14fc12e07f78b7"
+  integrity sha512-W3IqBfPrccVepAGp9cz+1p8FyVLkUhnY5gqsngvFH5meMtXGsuvlg16WuZJk/svocXP5ABWYUUBPop3AieOsNQ==
+  dependencies:
+    tslib "2.4.0"
+
+"@pnp/queryable@3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@pnp/queryable/-/queryable-3.7.0.tgz#e4cb9f11703d6e34bf6cecb54de0b07e20df2056"
+  integrity sha512-sFYSV86VPyb9W+Yjm3F1cpwSMlrFJTDoE4plxZYtmgOqwh4RbftrAQ/qJlWRK7mafPYdu59axY5FL955Hd6HkQ==
+  dependencies:
+    "@pnp/core" "3.7.0"
+    tslib "2.4.0"
+
+"@pnp/sp@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@pnp/sp/-/sp-3.7.0.tgz#1dce89de3fcedef4f550f4755d6aec1f7afd58d7"
+  integrity sha512-96y3LaJ4ZHmnd4xBPnqH7R2QtUoY0nHiVo3m4F2DVUIERPj0aj2NGipSaGj9rgBmBU45SkrfvkttnkTnXWnHLg==
+  dependencies:
+    "@pnp/core" "3.7.0"
+    "@pnp/queryable" "3.7.0"
+    tslib "2.4.0"
 
 "@pnpm/error@1.4.0":
   version "1.4.0"
@@ -3824,6 +3856,29 @@ chardet@^0.7.0:
   resolved "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
+chart.js@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.npmjs.org/chart.js/-/chart.js-2.9.4.tgz"
+  integrity sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A==
+  dependencies:
+    chartjs-color "^2.1.0"
+    moment "^2.10.2"
+
+chartjs-color-string@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz"
+  integrity sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A==
+  dependencies:
+    color-name "^1.0.0"
+
+chartjs-color@^2.1.0:
+  version "2.4.1"
+  resolved "https://registry.npmjs.org/chartjs-color/-/chartjs-color-2.4.1.tgz"
+  integrity sha512-haqOg1+Yebys/Ts/9bLo/BqUcONQOdr/hoEr2LLTRl6C5LXctUdHxsCYfvQVg5JIxITrfCNUDr4ntqmQk9+/0w==
+  dependencies:
+    chartjs-color-string "^0.6.0"
+    color-convert "^1.9.3"
+
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.1:
   version "3.5.3"
   resolved "https://registry.npmjs.org/chokidar/-/chokidar-3.5.3.tgz"
@@ -5080,13 +5135,6 @@ encodeurl@~1.0.2:
   resolved "https://registry.npmjs.org/encodeurl/-/encodeurl-1.0.2.tgz"
   integrity sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==
 
-encoding@^0.1.11:
-  version "0.1.13"
-  resolved "https://registry.npmjs.org/encoding/-/encoding-0.1.13.tgz"
-  integrity sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==
-  dependencies:
-    iconv-lite "^0.6.2"
-
 end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.4"
   resolved "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.4.tgz"
@@ -5209,9 +5257,9 @@ es6-promise@4.2.4:
   resolved "https://registry.npmjs.org/es6-promise/-/es6-promise-4.2.4.tgz"
   integrity sha512-/NdNZVJg+uZgtm9eS3O6lrOLYmQag2DjdEXuPaHlZ6RuVqgqaVZfgYCepEIKsLqwdQArOPtC3XzRLqGGfT8KQQ==
 
-es6-promise@^4.1.0:
+es6-promise@^4.2.6:
   version "4.2.8"
-  resolved "https://registry.npmjs.org/es6-promise/-/es6-promise-4.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
   integrity sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
 
 es6-symbol@3.1.3, es6-symbol@^3.1.1, es6-symbol@^3.1.3:
@@ -7443,7 +7491,7 @@ is-shared-array-buffer@^1.0.2:
   dependencies:
     call-bind "^1.0.2"
 
-is-stream@^1.0.1, is-stream@^1.1.0:
+is-stream@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/is-stream/-/is-stream-1.1.0.tgz"
   integrity sha512-uQPm8kcs47jx38atAcWTVxyltQYoPT68y9aWYdV6yWXSyW8mzSat0TL6CiWdZeCdF3KrAvpVtnHbTv4RN+rqdQ==
@@ -7547,13 +7595,13 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
 
-isomorphic-fetch@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz"
-  integrity sha512-9c4TNAKYXM5PRyVcwUZrF3W09nQ+sO7+jydgs4ZGW9dhsLG2VOlISJABombdQqQRXCwuYG3sYV/puGf5rp0qmA==
+isomorphic-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-3.0.0.tgz#0267b005049046d2421207215d45d6a262b8b8b4"
+  integrity sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==
   dependencies:
-    node-fetch "^1.0.1"
-    whatwg-fetch ">=0.10.0"
+    node-fetch "^2.6.1"
+    whatwg-fetch "^3.4.1"
 
 isstream@~0.1.2:
   version "0.1.2"
@@ -8963,6 +9011,11 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
+moment@^2.10.2:
+  version "2.29.4"
+  resolved "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/move-concurrently/-/move-concurrently-1.0.1.tgz"
@@ -9117,20 +9170,12 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-node-fetch@2.6.7, node-fetch@^2.6.0:
+node-fetch@2.6.7, node-fetch@^2.6.0, node-fetch@^2.6.1:
   version "2.6.7"
-  resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
   dependencies:
     whatwg-url "^5.0.0"
-
-node-fetch@^1.0.1:
-  version "1.7.3"
-  resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-1.7.3.tgz"
-  integrity sha512-NhZ4CsKx7cYm2vSrBAr2PvFOe6sWDf0UYLRqA6svUYg7+/TSfVAu49jYC4BvQ4Sms9SZgdqGBgroqfDhJdTyKQ==
-  dependencies:
-    encoding "^0.1.11"
-    is-stream "^1.0.1"
 
 node-forge@^0.10.0:
   version "0.10.0"
@@ -10735,6 +10780,14 @@ raw-loader@~0.5.1:
   version "0.5.1"
   resolved "https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz"
   integrity sha512-sf7oGoLuaYAScB4VGr0tzetsYlS8EJH6qnTCfQ/WVEa89hALQ4RQfCKt5xCyPQKPDUbVUAIP1QsxAwfAjlDp7Q==
+
+react-chartjs-2@^2.11.2:
+  version "2.11.2"
+  resolved "https://registry.npmjs.org/react-chartjs-2/-/react-chartjs-2-2.11.2.tgz"
+  integrity sha512-hcPS9vmRJeAALPPf0uo02BiD8BDm0HNmneJYTZVR74UKprXOpql+Jy1rVuj93rKw0Jfx77mkcRfXPxTe5K83uw==
+  dependencies:
+    lodash "^4.17.19"
+    prop-types "^15.7.2"
 
 react-dom@16.13.1:
   version "16.13.1"
@@ -12535,15 +12588,15 @@ tslib@2.3.1:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
+tslib@2.4.0, tslib@^2.0.0, tslib@^2.2.0:
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
 tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tslib@^2.0.0, tslib@^2.2.0:
-  version "2.4.0"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
-  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsutils@^3.21.0:
   version "3.21.0"
@@ -13173,9 +13226,9 @@ whatwg-fetch@2.0.3:
   resolved "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz"
   integrity sha512-SA2KdOXATOroD3EBUYvcdugsusXS5YiQFqwskSbsp5b1gK8HpNi/YP0jcy/BDpdllp305HMnrsVf9K7Be9GiEQ==
 
-whatwg-fetch@>=0.10.0:
+whatwg-fetch@^3.4.1:
   version "3.6.2"
-  resolved "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz#dced24f37f2624ed0281725d51d0e2e3fe677f8c"
   integrity sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==
 
 whatwg-mimetype@^2.1.0, whatwg-mimetype@^2.2.0, whatwg-mimetype@^2.3.0:

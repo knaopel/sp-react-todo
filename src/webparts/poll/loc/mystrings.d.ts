@@ -1,14 +1,13 @@
-declare interface IReactTodo2WebPartStrings {
+declare interface IPollStrings {
   PropertyPaneDescription: string;
-  BasicGroupName: string;
-  DescriptionFieldLabel: string;
-  AppLocalEnvironmentSharePoint: string;
-  AppLocalEnvironmentTeams: string;
-  AppSharePointEnvironment: string;
-  AppTeamsTabEnvironment: string;
+  DataGroupName: string;
+  ViewGroupName: string;
+  ListNameFieldLabel: string;
+  PollTitleFieldLabel: string;
+  PollDescriptionFieldLabel: string;
 }
 
-declare module 'ReactTodo2WebPartStrings' {
-  const strings: IReactTodo2WebPartStrings;
+declare module 'PollStrings' {
+  const strings: IPollStrings;
   export = strings;
 }

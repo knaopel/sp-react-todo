@@ -1,72 +1,76 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
+import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
 } from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import { IReadonlyTheme } from '@microsoft/sp-component-base';
+import {
+  Environment,
+  EnvironmentType,
+  Version,
+} from '@microsoft/sp-core-library';
 
-import * as strings from 'ReactTodo2WebPartStrings';
-import ReactTodo2 from './components/ReactTodo2';
-import { IReactTodo2Props } from './components/IReactTodo2Props';
+import * as strings from 'PollStrings';
+import { IPollWebPartProps } from './IPollWebPartProps';
+import { IMainProps, Main } from './components/Main';
+import { IPollService, MockPollService, PollService } from './services';
+import { getSP } from '../../services/pnpJsConfig';
 
-export interface IReactTodo2WebPartProps {
-  description: string;
-}
+export default class PollWebPart extends BaseClientSideWebPart<IPollWebPartProps> {
+  private _pollService: IPollService;
 
-export default class ReactTodo2WebPart extends BaseClientSideWebPart<IReactTodo2WebPartProps> {
+  protected async onInit(): Promise<void> {
+    this._configureWebPart = this._configureWebPart.bind(this);
 
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
+    if (DEBUG && Environment.type === EnvironmentType.Local) {
+      this._pollService = new MockPollService();
+    } else {
+      this._pollService = new PollService(
+        this.context,
+        this.properties.listName
+      );
+    }
+
+    await super.onInit();
+
+    getSP(this.context);
+  }
 
   public render(): void {
-    const element: React.ReactElement<IReactTodo2Props> = React.createElement(
-      ReactTodo2,
-      {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
-      }
-    );
+    const element: React.ReactElement<IMainProps> = React.createElement(Main, {
+      listName: this.properties.listName,
+      pollTitle: this.properties.pollTitle,
+      pollDescription: this.properties.pollDescription,
+      needsConfiguration: this._needsConfiguration(),
+      displayMode: this.displayMode,
+      configureWebPart: this._configureWebPart,
+      pollService: this._pollService,
+    });
 
     ReactDom.render(element, this.domElement);
   }
 
-  protected onInit(): Promise<void> {
-    this._environmentMessage = this._getEnvironmentMessage();
+  // protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
+  //   if (!currentTheme) {
+  //     return;
+  //   }
 
-    return super.onInit();
-  }
+  //   this._isDarkTheme = !!currentTheme.isInverted;
+  //   const { semanticColors } = currentTheme;
 
-  private _getEnvironmentMessage(): string {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams
-      return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
-    }
-
-    return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment;
-  }
-
-  protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
-    if (!currentTheme) {
-      return;
-    }
-
-    this._isDarkTheme = !!currentTheme.isInverted;
-    const {
-      semanticColors
-    } = currentTheme;
-
-    if (semanticColors) {
-      this.domElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
-      this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
-    }
-
-  }
+  //   if (semanticColors) {
+  //     this.domElement.style.setProperty(
+  //       '--bodyText',
+  //       semanticColors.bodyText || null
+  //     );
+  //     this.domElement.style.setProperty('--link', semanticColors.link || null);
+  //     this.domElement.style.setProperty(
+  //       '--linkHovered',
+  //       semanticColors.linkHovered || null
+  //     );
+  //   }
+  // }
 
   protected onDispose(): void {
     ReactDom.unmountComponentAtNode(this.domElement);
@@ -81,20 +85,64 @@ export default class ReactTodo2WebPart extends BaseClientSideWebPart<IReactTodo2
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: strings.PropertyPaneDescription,
           },
           groups: [
             {
-              groupName: strings.BasicGroupName,
+              groupName: strings.ViewGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
+                PropertyPaneTextField('pollTitle', {
+                  label: strings.PollTitleFieldLabel,
+                  onGetErrorMessage: this.validatePollTitle,
+                }),
+                PropertyPaneTextField('pollDescription', {
+                  label: strings.PollDescriptionFieldLabel,
+                }),
+              ],
+            },
+            {
+              groupName: strings.DataGroupName,
+              groupFields: [
+                PropertyPaneTextField('listName', {
+                  label: strings.ListNameFieldLabel,
+                  onGetErrorMessage: this.validateListName,
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  private validatePollTitle(pollTitle: string): string {
+    if (pollTitle.trim().length === 0) {
+      return 'Please enter a title for this poll';
+    } else {
+      return '';
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  private validateListName(pollTitle: string): string {
+    if (pollTitle.trim().length === 0) {
+      return 'Please enter the name of the list.';
+    } else {
+      return '';
+    }
+  }
+
+  private _needsConfiguration(): boolean {
+    return (
+      this.properties.listName === null ||
+      this.properties.listName.trim().length === 0 ||
+      this.properties.pollTitle === null ||
+      this.properties.pollTitle.trim().length === 0
+    );
+  }
+
+  private _configureWebPart(): void {
+    this.context.propertyPane.open();
   }
 }
